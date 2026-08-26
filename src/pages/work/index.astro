@@ -114,11 +114,21 @@ const demos = [
 
   .portfolio-copy {
     padding: clamp(2rem, 5vw, 4rem);
+    color: var(--body);
+  }
+
+  .portfolio-copy h2 {
+    color: var(--ink);
   }
 
   .portfolio-copy > p:not(.eyebrow) {
     max-width: 38rem;
     margin-top: 1.2rem;
+    color: var(--ink-soft);
+  }
+
+  .portfolio-copy .eyebrow {
+    color: var(--teal-dark);
   }
 
   .tag-row {
@@ -164,9 +174,11 @@ const demos = [
     min-height: 17rem;
     place-items: center;
     padding: 2rem;
+    color: var(--ink);
     text-align: center;
     font-family: var(--serif);
     font-size: clamp(1.8rem, 4vw, 3.2rem);
+    font-weight: 500;
   }
 
   .portfolio-preview--1 {
