@@ -569,6 +569,25 @@ p {
   font-size: .8rem;
 }
 
+.brighter-sites-signature {
+  margin-top: .7rem;
+  color: #789690;
+  font-size: .68rem;
+  line-height: 1.5;
+}
+
+.brighter-sites-signature a {
+  color: #9bb3ae;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: rgba(255,255,255,.15);
+  text-underline-offset: 2px;
+}
+
+.brighter-sites-signature a:hover {
+  color: #d2dfdc;
+}
+
 @media (min-width: 48rem) {
   .container {
     width: min(calc(100% - 4rem), var(--container));
