@@ -12,6 +12,8 @@ const {
   title = 'Brighter Sites | Websites for Therapists',
   description = 'Professional websites designed and built specifically for therapists and counseling practices.',
 } = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
 ---
 
 <!doctype html>
@@ -25,6 +27,7 @@ const {
 
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
 
     <meta name="theme-color" content="#102b32" />
     <link rel="icon" type="image/png" href="/images/branding/brighter-sites-favicon.png" />
