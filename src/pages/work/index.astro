@@ -1,50 +1,202 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+
+const demos = [
+  {
+    name: 'Evergreen Counseling Collective',
+    description:
+      'A warm, grounded counseling website built around soft greens, organic imagery, calm typography, and straightforward client navigation.',
+    tags: ['Warm', 'Organic', 'Grounded'],
+    href: 'https://evergreen.brightersites.app',
+  },
+  {
+    name: 'Align Therapy Group',
+    description:
+      'A sleek, contemporary counseling website with structured layouts, clean blue tones, and a polished group-practice feel.',
+    tags: ['Modern', 'Structured', 'Contemporary'],
+    href: 'https://align.brightersites.app',
+  },
+  {
+    name: 'Common Ground Therapy',
+    description:
+      'A more expressive, personality-forward therapy website using richer color, editorial layouts, and a warmer visual energy.',
+    tags: ['Expressive', 'Warm', 'Distinctive'],
+    href: 'https://commonground.brightersites.app',
+  },
+  {
+    name: 'Horizon Therapy',
+    description:
+      'An immersive, scenic counseling website built around expansive Montana imagery, cinematic presentation, and a strong sense of place.',
+    tags: ['Immersive', 'Scenic', 'Cinematic'],
+    href: 'https://horizon.brightersites.app',
+  },
+];
 ---
 
 <Layout
   title="Our Work | Brighter Sites"
-  description="Explore website concepts designed for therapists and counseling practices."
+  description="Explore live website concepts designed for therapists and counseling practices."
 >
   <section class="page-intro">
     <div class="container">
       <p class="eyebrow">Our work</p>
       <h1>Different practices deserve different websites.</h1>
       <p class="page-lead">
-        We design around the personality, clients, and goals of each practice—not around one reusable look.
+        Explore four fully navigable demonstration websites. Each was designed
+        around a different visual direction, practice personality, and client experience.
       </p>
     </div>
   </section>
 
   <section class="section">
-    <div class="container">
-      <article class="portfolio-feature">
-        <div class="portfolio-copy">
-          <p class="eyebrow">Featured demo</p>
-          <h2>Evergreen Counseling Collective</h2>
-          <p>
-            A warm, grounded counseling website built around soft greens,
-            organic imagery, calm typography, and straightforward client navigation.
-          </p>
+    <div class="container demo-list">
+      {
+        demos.map((demo, index) => (
+          <article class="portfolio-feature">
+            <div class="portfolio-copy">
+              <p class="eyebrow">
+                {index === 0 ? 'Featured demo' : 'Live demo'}
+              </p>
 
-          <div class="tag-row">
-            <span>Warm</span>
-            <span>Organic</span>
-            <span>Grounded</span>
-          </div>
+              <h2>{demo.name}</h2>
 
-          <a class="button" href="#" aria-disabled="true">
-            Live demo coming soon
-          </a>
-        </div>
+              <p>{demo.description}</p>
 
-        <div class="portfolio-preview portfolio-preview--evergreen">
-          <div class="preview-window">
-            <div class="preview-top"></div>
-            <div class="preview-body"></div>
-          </div>
-        </div>
-      </article>
+              <div class="tag-row">
+                {demo.tags.map((tag) => <span>{tag}</span>)}
+              </div>
+
+              <a
+                class="button"
+                href={demo.href}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Explore live demo →
+              </a>
+            </div>
+
+            <a
+              class={`portfolio-preview portfolio-preview--${index + 1}`}
+              href={demo.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Explore ${demo.name} live demo`}
+            >
+              <div class="preview-window">
+                <div class="preview-top"></div>
+                <div class="preview-body">
+                  <span>{demo.name}</span>
+                </div>
+              </div>
+            </a>
+          </article>
+        ))
+      }
     </div>
   </section>
 </Layout>
+
+<style>
+  .demo-list {
+    display: grid;
+    gap: clamp(2rem, 5vw, 4rem);
+  }
+
+  .portfolio-feature {
+    display: grid;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: white;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .portfolio-copy {
+    padding: clamp(2rem, 5vw, 4rem);
+  }
+
+  .portfolio-copy > p:not(.eyebrow) {
+    max-width: 38rem;
+    margin-top: 1.2rem;
+  }
+
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .55rem;
+    margin: 1.5rem 0 1.8rem;
+  }
+
+  .tag-row span {
+    padding: .38rem .7rem;
+    border-radius: 999px;
+    background: var(--cream);
+    color: var(--ink-soft);
+    font-size: .75rem;
+    font-weight: 750;
+  }
+
+  .portfolio-preview {
+    display: block;
+    min-height: 22rem;
+    padding: clamp(1.25rem, 4vw, 2.5rem);
+    text-decoration: none;
+  }
+
+  .preview-window {
+    height: 100%;
+    min-height: 19rem;
+    overflow: hidden;
+    border-radius: 1rem;
+    background: white;
+    box-shadow: 0 18px 45px rgba(16,43,50,.16);
+  }
+
+  .preview-top {
+    height: 2.3rem;
+    border-bottom: 1px solid rgba(16,43,50,.08);
+    background: rgba(255,255,255,.85);
+  }
+
+  .preview-body {
+    display: grid;
+    min-height: 17rem;
+    place-items: center;
+    padding: 2rem;
+    text-align: center;
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 4vw, 3.2rem);
+  }
+
+  .portfolio-preview--1 {
+    background: linear-gradient(135deg, #dfe9df, #8ca191);
+  }
+
+  .portfolio-preview--2 {
+    background: linear-gradient(135deg, #dce8f0, #5f7e98);
+  }
+
+  .portfolio-preview--3 {
+    background: linear-gradient(135deg, #f0c39f, #a85e54);
+  }
+
+  .portfolio-preview--4 {
+    background: linear-gradient(135deg, #b8c8bd, #244d4c);
+  }
+
+  @media (min-width:48rem) {
+    .portfolio-feature {
+      grid-template-columns: .9fr 1.1fr;
+      align-items: stretch;
+    }
+
+    .portfolio-feature:nth-child(even) .portfolio-copy {
+      order: 2;
+    }
+
+    .portfolio-feature:nth-child(even) .portfolio-preview {
+      order: 1;
+    }
+  }
+</style>
