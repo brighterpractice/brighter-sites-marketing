@@ -34,44 +34,40 @@ const path = Astro.url.pathname;
       Start a project
     </a>
 
-    <button
-      class="mobile-menu-button"
-      type="button"
-      aria-expanded="false"
-      aria-controls="mobile-navigation"
-      aria-label="Open navigation"
-    >
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-  </div>
+    <details class="mobile-nav-details">
+      <summary
+        class="mobile-menu-button"
+        aria-label="Open navigation"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </summary>
 
-  <nav
-    class="mobile-menu"
-    id="mobile-navigation"
-    aria-label="Mobile navigation"
-    hidden
-  >
-    <div class="container mobile-menu-inner">
-      <a href="/">Home</a>
+      <nav
+        class="mobile-menu"
+        id="mobile-navigation"
+        aria-label="Mobile navigation"
+      >
+        <div class="container mobile-menu-inner">
+          <a href="/">Home</a>
 
-      {
-        navigation.map((item) => (
-          <a
-            href={item.href}
-            aria-current={path.startsWith(item.href) ? 'page' : undefined}
-          >
-            {item.label}
+          {
+            navigation.map((item) => (
+              <a
+                href={item.href}
+                aria-current={path.startsWith(item.href) ? 'page' : undefined}
+              >
+                {item.label}
+              </a>
+            ))
+          }
+
+          <a class="mobile-menu-cta" href={primaryCta}>
+            Start a project
           </a>
-        ))
-      }
-
-      <a class="mobile-menu-cta" href={primaryCta}>
-        Start a project
-      </a>
-    </div>
-  </nav>
+        </div>
+      </nav>
+    </details>
+  </div>
 </header>
-
-<script src="/scripts/mobile-menu.js" defer></script>
