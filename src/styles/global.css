@@ -1030,3 +1030,101 @@ body.mobile-menu-open {
 .text-link:hover {
   text-decoration: underline;
 }
+
+/* Pricing */
+
+.pricing-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.pricing-card {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(1.5rem, 4vw, 2.2rem);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: white;
+  box-shadow: var(--shadow-soft);
+}
+
+.pricing-card-featured {
+  border-color: rgba(39,119,111,.35);
+  background:
+    linear-gradient(180deg, rgba(216,235,230,.42), white 42%);
+}
+
+.pricing-label {
+  color: var(--teal-dark);
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.pricing-price {
+  margin-top: .65rem;
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.05;
+}
+
+.pricing-price span {
+  margin-left: .2rem;
+  color: var(--ink-soft);
+  font-family: var(--sans);
+  font-size: .95rem;
+  font-weight: 650;
+}
+
+.pricing-card > p:not(.pricing-label):not(.pricing-price) {
+  margin-top: 1rem;
+}
+
+.pricing-list {
+  display: grid;
+  gap: .7rem;
+  margin: 1.4rem 0 1.7rem;
+  padding-left: 1.2rem;
+}
+
+.pricing-list li {
+  padding-left: .15rem;
+}
+
+.pricing-card .button {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+.pricing-note {
+  max-width: 50rem;
+  margin-top: 1.5rem;
+  color: var(--ink-soft);
+  font-size: .9rem;
+}
+
+.brighter-sites-signature {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: .35rem 1rem;
+}
+
+@media (min-width: 48rem) {
+  .pricing-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .pricing-grid-three {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.price-badge {
+  width: auto;
+  min-width: 3.6rem;
+  padding: 0 .65rem;
+}

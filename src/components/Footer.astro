@@ -1,3 +1,15 @@
+---
+const lastUpdated = new Intl.DateTimeFormat('en-US', {
+  timeZone: 'America/Denver',
+  month: 'short',
+  day: 'numeric',
+  year: 'numeric',
+  hour: 'numeric',
+  minute: '2-digit',
+  timeZoneName: 'short',
+}).format(new Date());
+---
+
 <footer class="site-footer">
   <div class="container footer-main">
     <div>
@@ -9,7 +21,7 @@
 
     <div class="footer-links">
       <a href="/work/">Work</a>
-      <a href="/services/">Services</a>
+      <a href="/services/">Pricing & Services</a>
       <a href="/process/">Process</a>
       <a href="/contact/">Contact</a>
     </div>
@@ -21,7 +33,10 @@
   </div>
 
   <div class="container brighter-sites-signature">
-    Website built and managed by{" "}
-    <a href="https://brightersites.app">Brighter Sites</a>
+    <span>Site last updated {lastUpdated}</span>
+    <span>
+      Website built and managed by{" "}
+      <a href="https://brightersites.app">Brighter Sites</a>
+    </span>
   </div>
 </footer>

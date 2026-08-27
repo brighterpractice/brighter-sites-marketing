@@ -18,6 +18,7 @@ const path = Astro.url.pathname;
     </a>
 
     <nav class="desktop-nav" aria-label="Primary navigation">
+      <a href="/" aria-current={path === '/' ? 'page' : undefined}>Home</a>
       {
         navigation.map((item) => (
           <a
@@ -50,7 +51,7 @@ const path = Astro.url.pathname;
         aria-label="Mobile navigation"
       >
         <div class="container mobile-menu-inner">
-          <a href="/">Home</a>
+          <a href="/" aria-current={path === '/' ? 'page' : undefined}>Home</a>
 
           {
             navigation.map((item) => (
