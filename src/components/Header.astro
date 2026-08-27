@@ -74,7 +74,7 @@ const path = Astro.url.pathname;
   </nav>
 </header>
 
-<script>
+<script is:inline>
   const button = document.querySelector('.mobile-menu-button');
   const menu = document.querySelector('#mobile-navigation');
 
@@ -101,6 +101,17 @@ const path = Astro.url.pathname;
 
     menu.querySelectorAll('a').forEach((link) => {
       link.addEventListener('click', closeMenu);
+    });
+
+    document.addEventListener('click', (event) => {
+      if (button.getAttribute('aria-expanded') !== 'true') return;
+
+      const target = event.target;
+
+      if (!(target instanceof Node)) return;
+      if (button.contains(target) || menu.contains(target)) return;
+
+      closeMenu();
     });
 
     document.addEventListener('keydown', (event) => {
