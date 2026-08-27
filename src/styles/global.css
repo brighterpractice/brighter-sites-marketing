@@ -116,6 +116,8 @@ p {
 }
 
 .header-inner {
+  position: relative;
+  z-index: 1;
   display: flex;
   min-height: 5rem;
   align-items: center;
@@ -854,6 +856,8 @@ p {
 }
 
 .mobile-menu-button {
+  position: relative;
+  z-index: 3;
   display: grid;
   width: 46px;
   height: 46px;
@@ -866,6 +870,7 @@ p {
   background: transparent;
   color: var(--ink);
   cursor: pointer;
+  touch-action: manipulation;
 }
 
 .mobile-menu-button span {
@@ -878,6 +883,7 @@ p {
 
 .mobile-menu {
   position: absolute;
+  z-index: 2;
   top: 100%;
   left: 0;
   width: 100%;
