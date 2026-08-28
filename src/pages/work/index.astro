@@ -8,6 +8,7 @@ const demos = [
       'A warm, grounded counseling website built around soft greens, organic imagery, calm typography, and straightforward client navigation.',
     tags: ['Warm', 'Organic', 'Grounded'],
     href: 'https://evergreen.brightersites.app',
+    preview: 'evergreen',
   },
   {
     name: 'Align Therapy Group',
@@ -15,6 +16,7 @@ const demos = [
       'A sleek, contemporary counseling website with structured layouts, clean blue tones, and a polished group-practice feel.',
     tags: ['Modern', 'Structured', 'Contemporary'],
     href: 'https://align.brightersites.app',
+    preview: 'align',
   },
   {
     name: 'Common Ground Therapy',
@@ -22,6 +24,7 @@ const demos = [
       'A more expressive, personality-forward therapy website using richer color, editorial layouts, and a warmer visual energy.',
     tags: ['Expressive', 'Warm', 'Distinctive'],
     href: 'https://common.brightersites.app',
+    preview: 'common',
   },
   {
     name: 'Horizon Therapy',
@@ -29,6 +32,7 @@ const demos = [
       'An immersive, scenic counseling website built around expansive Montana imagery, cinematic presentation, and a strong sense of place.',
     tags: ['Immersive', 'Scenic', 'Cinematic'],
     href: 'https://horizon.brightersites.app',
+    preview: 'horizon',
   },
 ];
 ---
@@ -77,17 +81,112 @@ const demos = [
             </div>
 
             <a
-              class={`portfolio-preview portfolio-preview--${index + 1}`}
+              class={`portfolio-preview portfolio-preview--${demo.preview}`}
               href={demo.href}
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`Explore ${demo.name} live demo`}
             >
-              <div class="preview-window">
-                <div class="preview-top"></div>
-                <div class="preview-body">
-                  <span>{demo.name}</span>
+              <div class="preview-window" aria-hidden="true">
+                <div class="preview-top">
+                  <span></span><span></span><span></span>
+                  <i></i>
                 </div>
+
+                {demo.preview === 'evergreen' && (
+                  <div class="site-mini evergreen-mini">
+                    <div class="mini-nav evergreen-nav">
+                      <div class="mini-brand">
+                        <span class="evergreen-mark"></span>
+                        <b>Evergreen</b>
+                      </div>
+                      <div class="mini-links"><span></span><span></span><span></span></div>
+                    </div>
+                    <div class="evergreen-hero">
+                      <div class="mini-copy">
+                        <small>COUNSELING COLLECTIVE</small>
+                        <strong>A place to feel understood.</strong>
+                        <p>Warm, thoughtful therapy for meaningful change.</p>
+                        <em>Request appointment</em>
+                      </div>
+                      <div class="evergreen-art">
+                        <span class="leaf leaf-one"></span>
+                        <span class="leaf leaf-two"></span>
+                        <span class="leaf leaf-three"></span>
+                      </div>
+                    </div>
+                    <div class="evergreen-footer-line"><span></span><span></span><span></span></div>
+                  </div>
+                )}
+
+                {demo.preview === 'align' && (
+                  <div class="site-mini align-mini">
+                    <div class="mini-nav align-nav">
+                      <div class="align-logo">ALIGN<span>•</span></div>
+                      <div class="mini-links"><span></span><span></span><span></span></div>
+                    </div>
+                    <div class="align-hero">
+                      <div class="align-copy">
+                        <small>THERAPY GROUP</small>
+                        <strong>Clear support.<br />Forward movement.</strong>
+                        <p>Modern care for individuals, couples, and families.</p>
+                        <em>Meet our clinicians</em>
+                      </div>
+                      <div class="align-art">
+                        <span class="align-orbit orbit-one"></span>
+                        <span class="align-orbit orbit-two"></span>
+                        <span class="align-core"></span>
+                        <b>01</b>
+                      </div>
+                    </div>
+                    <div class="align-stats"><span>INDIVIDUAL</span><span>COUPLES</span><span>FAMILY</span></div>
+                  </div>
+                )}
+
+                {demo.preview === 'common' && (
+                  <div class="site-mini common-mini">
+                    <div class="common-topline">
+                      <b>COMMON GROUND</b>
+                      <span>THERAPY</span>
+                    </div>
+                    <div class="common-editorial">
+                      <div class="common-copy">
+                        <small>COME AS YOU ARE</small>
+                        <strong>Find steadier ground.</strong>
+                        <p>Therapy with warmth, honesty, and room to be fully human.</p>
+                        <em>Start here →</em>
+                      </div>
+                      <div class="common-art">
+                        <span class="common-sun"></span>
+                        <span class="common-arch"></span>
+                        <span class="common-line line-one"></span>
+                        <span class="common-line line-two"></span>
+                      </div>
+                    </div>
+                    <div class="common-quote">SPACE TO PAUSE • SPACE TO GROW • SPACE TO CONNECT</div>
+                  </div>
+                )}
+
+                {demo.preview === 'horizon' && (
+                  <div class="site-mini horizon-mini">
+                    <div class="horizon-sky">
+                      <div class="mini-nav horizon-nav">
+                        <b>HORIZON</b>
+                        <div class="mini-links"><span></span><span></span><span></span></div>
+                      </div>
+                      <span class="horizon-sun"></span>
+                      <span class="mountain mountain-back"></span>
+                      <span class="mountain mountain-mid"></span>
+                      <span class="mountain mountain-front"></span>
+                      <div class="horizon-copy">
+                        <small>MONTANA THERAPY</small>
+                        <strong>Make room for what comes next.</strong>
+                        <em>Begin your journey</em>
+                      </div>
+                    </div>
+                    <div class="horizon-bottom"><span>ROOTED IN PLACE</span><span>BUILT FOR CHANGE</span></div>
+                  </div>
+                )}
               </div>
             </a>
           </article>
@@ -158,43 +257,528 @@ const demos = [
     height: 100%;
     min-height: 19rem;
     overflow: hidden;
+    border: 1px solid rgba(16,43,50,.09);
     border-radius: 1rem;
     background: white;
     box-shadow: 0 18px 45px rgba(16,43,50,.16);
+    transition: transform .22s ease, box-shadow .22s ease;
+  }
+
+  .portfolio-preview:hover .preview-window {
+    transform: translateY(-3px) scale(1.008);
+    box-shadow: 0 24px 55px rgba(16,43,50,.2);
   }
 
   .preview-top {
+    display: flex;
     height: 2.3rem;
+    align-items: center;
+    gap: .35rem;
+    padding: 0 .8rem;
     border-bottom: 1px solid rgba(16,43,50,.08);
-    background: rgba(255,255,255,.85);
+    background: rgba(255,255,255,.9);
   }
 
-  .preview-body {
-    display: grid;
+  .preview-top > span {
+    width: .48rem;
+    height: .48rem;
+    border-radius: 50%;
+    background: #cbd6d2;
+  }
+
+  .preview-top i {
+    width: 45%;
+    height: .55rem;
+    margin-left: .5rem;
+    border-radius: 999px;
+    background: #e8eeeb;
+  }
+
+  .site-mini {
     min-height: 17rem;
-    place-items: center;
-    padding: 2rem;
-    color: var(--ink);
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+  }
+
+  .mini-nav {
+    display: flex;
+    min-height: 2.7rem;
+    align-items: center;
+    justify-content: space-between;
+    padding: .6rem 1rem;
+  }
+
+  .mini-links {
+    display: flex;
+    gap: .38rem;
+  }
+
+  .mini-links span {
+    display: block;
+    width: 1.5rem;
+    height: .16rem;
+    border-radius: 999px;
+    background: currentColor;
+    opacity: .35;
+  }
+
+  .mini-copy small,
+  .align-copy small,
+  .common-copy small,
+  .horizon-copy small {
+    display: block;
+    font-size: .43rem;
+    font-weight: 800;
+    letter-spacing: .14em;
+  }
+
+  .mini-copy strong,
+  .align-copy strong,
+  .common-copy strong,
+  .horizon-copy strong {
+    display: block;
+    font-family: Georgia, serif;
+    font-weight: 400;
+    line-height: 1.02;
+  }
+
+  .mini-copy p,
+  .align-copy p,
+  .common-copy p {
+    max-width: 13rem;
+    margin: .6rem 0 0;
+    font-size: .56rem;
+    line-height: 1.55;
+  }
+
+  .mini-copy em,
+  .align-copy em,
+  .common-copy em,
+  .horizon-copy em {
+    display: inline-block;
+    margin-top: .8rem;
+    padding: .42rem .7rem;
+    border-radius: 999px;
+    font-size: .48rem;
+    font-style: normal;
+    font-weight: 700;
+  }
+
+  /* Evergreen: organic, soft, grounded. */
+  .portfolio-preview--evergreen {
+    background: linear-gradient(135deg, #e2eadf, #8da092);
+  }
+
+  .evergreen-mini {
+    background: #faf7ef;
+    color: #29483f;
+  }
+
+  .evergreen-nav {
+    border-bottom: 1px solid rgba(41,72,63,.08);
+  }
+
+  .mini-brand {
+    display: flex;
+    align-items: center;
+    gap: .45rem;
+    font-family: Georgia, serif;
+    font-size: .65rem;
+    font-weight: 400;
+  }
+
+  .evergreen-mark {
+    position: relative;
+    width: 1.05rem;
+    height: 1.05rem;
+    border-radius: 50% 50% 50% 10%;
+    background: #526f62;
+    transform: rotate(-28deg);
+  }
+
+  .evergreen-mark::after {
+    position: absolute;
+    width: .06rem;
+    height: .72rem;
+    top: .18rem;
+    left: .5rem;
+    background: rgba(255,255,255,.7);
+    content: '';
+    transform: rotate(30deg);
+  }
+
+  .evergreen-hero {
+    display: grid;
+    grid-template-columns: 1.08fr .92fr;
+    min-height: 11.8rem;
+    align-items: center;
+    gap: .7rem;
+    padding: 1.15rem 1rem .8rem 1.15rem;
+  }
+
+  .mini-copy strong {
+    max-width: 12rem;
+    margin-top: .35rem;
+    font-size: clamp(1.3rem, 3.5vw, 2.25rem);
+  }
+
+  .mini-copy em {
+    background: #29483f;
+    color: white;
+  }
+
+  .evergreen-art {
+    position: relative;
+    min-height: 9.5rem;
+    overflow: hidden;
+    border-radius: 6rem 6rem 1.1rem 1.1rem;
+    background:
+      radial-gradient(circle at 50% 28%, rgba(244,232,202,.9), transparent 27%),
+      linear-gradient(155deg, #cbd7c5, #6d8374);
+  }
+
+  .leaf {
+    position: absolute;
+    display: block;
+    width: 3.8rem;
+    height: 6rem;
+    border-radius: 100% 0 100% 0;
+    background: rgba(41,72,63,.36);
+    transform-origin: bottom center;
+  }
+
+  .leaf-one { bottom: -1.8rem; left: 12%; transform: rotate(-25deg); }
+  .leaf-two { bottom: -2.1rem; left: 42%; transform: rotate(12deg) scale(.82); }
+  .leaf-three { bottom: -1.4rem; right: -4%; transform: rotate(38deg) scale(.92); }
+
+  .evergreen-footer-line {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: .45rem;
+    padding: 0 1rem 1rem;
+  }
+
+  .evergreen-footer-line span {
+    height: .2rem;
+    border-radius: 999px;
+    background: rgba(41,72,63,.16);
+  }
+
+  /* Align: crisp geometry, cool blue, structured. */
+  .portfolio-preview--align {
+    background: linear-gradient(135deg, #dce8f0, #587891);
+  }
+
+  .align-mini {
+    background: #f7fafc;
+    color: #173b56;
+  }
+
+  .align-nav {
+    border-bottom: 1px solid #dce7ed;
+    background: #fff;
+  }
+
+  .align-logo {
+    font-size: .63rem;
+    font-weight: 900;
+    letter-spacing: .18em;
+  }
+
+  .align-logo span { color: #5e9db6; }
+
+  .align-hero {
+    display: grid;
+    grid-template-columns: 1.05fr .95fr;
+    min-height: 11.6rem;
+    align-items: stretch;
+  }
+
+  .align-copy {
+    padding: 1.5rem 1rem 1rem 1.25rem;
+  }
+
+  .align-copy strong {
+    margin-top: .38rem;
+    color: #173b56;
+    font-family: Arial, sans-serif;
+    font-size: clamp(1.2rem, 3vw, 2.05rem);
+    font-weight: 650;
+    letter-spacing: -.045em;
+  }
+
+  .align-copy em {
+    border: 1px solid #366b86;
+    color: #24526c;
+  }
+
+  .align-art {
+    position: relative;
+    overflow: hidden;
+    background:
+      linear-gradient(rgba(255,255,255,.18) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.18) 1px, transparent 1px),
+      linear-gradient(145deg, #7aa8bb, #3c667e);
+    background-size: 1.25rem 1.25rem, 1.25rem 1.25rem, auto;
+  }
+
+  .align-orbit {
+    position: absolute;
+    display: block;
+    border: 1px solid rgba(255,255,255,.65);
+    border-radius: 50%;
+  }
+
+  .orbit-one { width: 7.4rem; height: 7.4rem; top: 1.3rem; left: 1.2rem; }
+  .orbit-two { width: 4.7rem; height: 4.7rem; top: 2.65rem; left: 2.55rem; }
+
+  .align-core {
+    position: absolute;
+    width: 1.4rem;
+    height: 1.4rem;
+    top: 4.3rem;
+    left: 4.2rem;
+    border-radius: 50%;
+    background: #eef8fb;
+    box-shadow: 0 0 0 .7rem rgba(255,255,255,.14);
+  }
+
+  .align-art b {
+    position: absolute;
+    right: .8rem;
+    bottom: .45rem;
+    color: rgba(255,255,255,.8);
+    font-size: 2.8rem;
+    font-weight: 300;
+    line-height: 1;
+  }
+
+  .align-stats {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    border-top: 1px solid #dce7ed;
+    background: white;
+  }
+
+  .align-stats span {
+    padding: .5rem;
+    border-right: 1px solid #dce7ed;
+    color: #638094;
+    font-size: .4rem;
+    font-weight: 800;
+    letter-spacing: .1em;
     text-align: center;
-    font-family: var(--serif);
-    font-size: clamp(1.8rem, 4vw, 3.2rem);
-    font-weight: 500;
   }
 
-  .portfolio-preview--1 {
-    background: linear-gradient(135deg, #dfe9df, #8ca191);
+  /* Common Ground: warm, expressive, editorial. */
+  .portfolio-preview--common {
+    background: linear-gradient(135deg, #f1c6a5, #a95f56);
   }
 
-  .portfolio-preview--2 {
-    background: linear-gradient(135deg, #dce8f0, #5f7e98);
+  .common-mini {
+    background: #f7dfc7;
+    color: #582f2d;
   }
 
-  .portfolio-preview--3 {
-    background: linear-gradient(135deg, #f0c39f, #a85e54);
+  .common-topline {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: .75rem 1rem .6rem;
+    border-bottom: 1px solid rgba(88,47,45,.18);
   }
 
-  .portfolio-preview--4 {
-    background: linear-gradient(135deg, #b8c8bd, #244d4c);
+  .common-topline b {
+    font-family: Georgia, serif;
+    font-size: .7rem;
+    letter-spacing: .06em;
+  }
+
+  .common-topline span {
+    font-size: .42rem;
+    font-weight: 800;
+    letter-spacing: .17em;
+  }
+
+  .common-editorial {
+    display: grid;
+    grid-template-columns: 1.08fr .92fr;
+    min-height: 11.7rem;
+  }
+
+  .common-copy {
+    padding: 1.25rem .75rem 1rem 1.1rem;
+  }
+
+  .common-copy strong {
+    max-width: 11rem;
+    margin-top: .3rem;
+    color: #6b3834;
+    font-size: clamp(1.35rem, 3.4vw, 2.3rem);
+    font-style: italic;
+  }
+
+  .common-copy em {
+    padding-left: 0;
+    color: #6b3834;
+    font-weight: 800;
+  }
+
+  .common-art {
+    position: relative;
+    overflow: hidden;
+    background: #bc6659;
+  }
+
+  .common-sun {
+    position: absolute;
+    width: 5.2rem;
+    height: 5.2rem;
+    top: 1.1rem;
+    right: 1rem;
+    border-radius: 50%;
+    background: #efb76e;
+  }
+
+  .common-arch {
+    position: absolute;
+    width: 6.6rem;
+    height: 8.7rem;
+    right: -1.25rem;
+    bottom: -2.7rem;
+    border: .75rem solid rgba(247,223,199,.5);
+    border-bottom: 0;
+    border-radius: 5rem 5rem 0 0;
+  }
+
+  .common-line {
+    position: absolute;
+    display: block;
+    width: 5rem;
+    height: .12rem;
+    left: .8rem;
+    background: rgba(255,240,222,.58);
+    transform: rotate(-21deg);
+  }
+
+  .line-one { bottom: 2.2rem; }
+  .line-two { bottom: 1.35rem; width: 3.5rem; }
+
+  .common-quote {
+    padding: .55rem .8rem;
+    background: #6c3a36;
+    color: #f9e7d6;
+    font-size: .39rem;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-align: center;
+  }
+
+  /* Horizon: cinematic Montana landscape. */
+  .portfolio-preview--horizon {
+    background: linear-gradient(135deg, #b7c7bd, #244d4c);
+  }
+
+  .horizon-mini {
+    background: #d9e0d7;
+    color: white;
+  }
+
+  .horizon-sky {
+    position: relative;
+    min-height: 14.65rem;
+    overflow: hidden;
+    background: linear-gradient(#78979b 0%, #aebdb4 52%, #d5c49e 100%);
+  }
+
+  .horizon-nav {
+    position: relative;
+    z-index: 6;
+    color: white;
+  }
+
+  .horizon-nav b {
+    font-family: Georgia, serif;
+    font-size: .72rem;
+    font-weight: 400;
+    letter-spacing: .12em;
+  }
+
+  .horizon-sun {
+    position: absolute;
+    z-index: 1;
+    width: 4.2rem;
+    height: 4.2rem;
+    top: 2.6rem;
+    right: 15%;
+    border-radius: 50%;
+    background: rgba(239,218,172,.72);
+    box-shadow: 0 0 2rem rgba(239,218,172,.35);
+  }
+
+  .mountain {
+    position: absolute;
+    right: -5%;
+    bottom: 0;
+    left: -5%;
+    display: block;
+    transform-origin: bottom;
+  }
+
+  .mountain-back {
+    z-index: 2;
+    height: 7.7rem;
+    background: #71877d;
+    clip-path: polygon(0 70%, 15% 42%, 25% 60%, 40% 18%, 53% 58%, 66% 33%, 83% 61%, 100% 38%, 100% 100%, 0 100%);
+    opacity: .72;
+  }
+
+  .mountain-mid {
+    z-index: 3;
+    height: 6.2rem;
+    background: #48665d;
+    clip-path: polygon(0 67%, 18% 31%, 33% 63%, 47% 26%, 64% 70%, 78% 35%, 100% 65%, 100% 100%, 0 100%);
+    opacity: .9;
+  }
+
+  .mountain-front {
+    z-index: 4;
+    height: 4.1rem;
+    background: #274a46;
+    clip-path: polygon(0 72%, 22% 38%, 40% 69%, 59% 28%, 78% 65%, 100% 35%, 100% 100%, 0 100%);
+  }
+
+  .horizon-copy {
+    position: absolute;
+    z-index: 5;
+    width: 60%;
+    top: 3.5rem;
+    left: 1.1rem;
+    text-shadow: 0 2px 16px rgba(23,48,46,.28);
+  }
+
+  .horizon-copy strong {
+    margin-top: .3rem;
+    color: white;
+    font-size: clamp(1.35rem, 3.4vw, 2.35rem);
+  }
+
+  .horizon-copy em {
+    border: 1px solid rgba(255,255,255,.55);
+    background: rgba(27,65,62,.36);
+    color: white;
+    backdrop-filter: blur(6px);
+  }
+
+  .horizon-bottom {
+    display: flex;
+    justify-content: space-between;
+    padding: .55rem .8rem;
+    background: #183e3c;
+    color: rgba(255,255,255,.76);
+    font-size: .38rem;
+    font-weight: 800;
+    letter-spacing: .13em;
   }
 
   @media (min-width:48rem) {
@@ -209,6 +793,28 @@ const demos = [
 
     .portfolio-feature:nth-child(even) .portfolio-preview {
       order: 1;
+    }
+  }
+
+  @media (max-width: 31rem) {
+    .evergreen-hero,
+    .align-hero,
+    .common-editorial {
+      grid-template-columns: 1.15fr .85fr;
+    }
+
+    .mini-links span {
+      width: 1rem;
+    }
+
+    .horizon-copy {
+      width: 70%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .preview-window {
+      transition: none;
     }
   }
 </style>
