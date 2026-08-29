@@ -1,30 +1,31 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import WorkValueCase from '../../components/WorkValueCase.astro';
 
 const demos = [
   {
     name: 'Evergreen Counseling Collective',
-    scope: 'Focused practice site',
+    scope: 'Focused custom practice site',
     pages: '7 primary pages',
     description:
-      'A warm, grounded seven-page counseling website built around soft greens, organic imagery, calm typography, and straightforward client navigation.',
+      'A warm, grounded seven-page custom counseling website built around soft greens, organic imagery, calm typography, and straightforward client navigation.',
     tags: ['Warm', 'Organic', 'Grounded'],
     href: 'https://evergreen.brightersites.app',
     preview: 'evergreen',
   },
   {
     name: 'Align Therapy Group',
-    scope: 'Expanded practice site',
-    pages: '15 primary pages',
+    scope: 'Expanded custom practice site',
+    pages: '12 primary pages',
     description:
-      'A more developed 15-page counseling website with structured layouts, clean blue tones, dedicated service content, and a polished group-practice feel.',
+      'A more developed 12-page custom counseling website with structured layouts, clean blue tones, dedicated service content, and a polished group-practice feel.',
     tags: ['Modern', 'Structured', 'Contemporary'],
     href: 'https://align.brightersites.app',
     preview: 'align',
   },
   {
     name: 'Common Ground Therapy',
-    scope: 'Full custom practice site',
+    scope: 'Comprehensive custom practice site',
     pages: '19 primary pages',
     description:
       'A larger custom therapy website using richer color, editorial layouts, deeper service and approach content, and a warmer visual energy.',
@@ -34,10 +35,10 @@ const demos = [
   },
   {
     name: 'Horizon Therapy',
-    scope: 'Full custom practice site',
+    scope: 'Comprehensive custom practice site',
     pages: '20 primary pages',
     description:
-      'An immersive, full-scale counseling website built around expansive Montana imagery, cinematic presentation, deeper content, and a strong sense of place.',
+      'An immersive, full-scale custom counseling website built around expansive Montana imagery, cinematic presentation, deeper content, and a strong sense of place.',
     tags: ['Immersive', 'Scenic', 'Cinematic'],
     href: 'https://horizon.brightersites.app',
     preview: 'horizon',
@@ -47,21 +48,22 @@ const demos = [
 
 <Layout
   title="Our Work | Brighter Sites"
-  description="Explore live website concepts designed for therapists and counseling practices."
+  description="Explore four live therapy website demos and see how Brighter Sites combines custom design with ongoing website management and analytics."
 >
   <section class="page-intro">
     <div class="container">
       <p class="eyebrow">Our work</p>
       <h1>Different practices deserve different websites.</h1>
       <p class="page-lead">
-        Explore four fully navigable demonstration websites. They range from a
-        focused seven-page practice site to larger custom builds with nearly
-        three times the content depth, while each keeps its own visual direction,
-        practice personality, and client experience.
+        Explore four fully navigable, custom-built demonstration websites. The
+        examples range from a focused seven-page site to a comprehensive
+        20-page site. Page count changes the scope and content depth—not the
+        level of customization. Each keeps its own visual direction, practice
+        personality, content voice, and client experience.
       </p>
       <p class="scope-note">
-        Page counts refer to primary content pages. Privacy, terms, and other
-        utility pages are not included.
+        Every example is custom designed and built. Page counts refer to primary
+        content pages; privacy, terms, and other utility pages are not included.
       </p>
     </div>
   </section>
@@ -124,8 +126,8 @@ const demos = [
                     <div class="evergreen-hero">
                       <div class="mini-copy">
                         <small>COUNSELING COLLECTIVE</small>
-                        <strong>A place to feel understood.</strong>
-                        <p>Warm, thoughtful therapy for meaningful change.</p>
+                        <strong>A quieter place to sort through what feels tangled.</strong>
+                        <p>Individual counseling with room to slow down and reconnect.</p>
                         <em>Request appointment</em>
                       </div>
                       <div class="evergreen-art">
@@ -147,18 +149,17 @@ const demos = [
                     <div class="align-hero">
                       <div class="align-copy">
                         <small>THERAPY GROUP</small>
-                        <strong>Clear support.<br />Forward movement.</strong>
-                        <p>Modern care for individuals, couples, and families.</p>
-                        <em>Meet our clinicians</em>
+                        <strong>When your inner life and outer life no longer match.</strong>
+                        <p>Focused counseling for adults who want to understand what keeps repeating.</p>
+                        <em>Meet Jordan</em>
                       </div>
                       <div class="align-art">
                         <span class="align-orbit orbit-one"></span>
                         <span class="align-orbit orbit-two"></span>
                         <span class="align-core"></span>
-                        <b>01</b>
                       </div>
                     </div>
-                    <div class="align-stats"><span>INDIVIDUAL</span><span>COUPLES</span><span>FAMILY</span></div>
+                    <div class="align-stats"><span>NOTICE</span><span>UNDERSTAND</span><span>CHOOSE</span></div>
                   </div>
                 )}
 
@@ -170,10 +171,10 @@ const demos = [
                     </div>
                     <div class="common-editorial">
                       <div class="common-copy">
-                        <small>COME AS YOU ARE</small>
-                        <strong>Find steadier ground.</strong>
-                        <p>Therapy with warmth, honesty, and room to be fully human.</p>
-                        <em>Start here →</em>
+                        <small>RICHMOND, VIRGINIA</small>
+                        <strong>Therapy for real life, real people.</strong>
+                        <p>A warm, down-to-earth place to bring what feels heavy or confusing.</p>
+                        <em>Start where you are →</em>
                       </div>
                       <div class="common-art">
                         <span class="common-sun"></span>
@@ -182,7 +183,7 @@ const demos = [
                         <span class="common-line line-two"></span>
                       </div>
                     </div>
-                    <div class="common-quote">SPACE TO PAUSE • SPACE TO GROW • SPACE TO CONNECT</div>
+                    <div class="common-quote">BRING THE MESSY VERSION • START WHERE YOU ARE</div>
                   </div>
                 )}
 
@@ -198,12 +199,12 @@ const demos = [
                       <span class="mountain mountain-mid"></span>
                       <span class="mountain mountain-front"></span>
                       <div class="horizon-copy">
-                        <small>MONTANA THERAPY</small>
-                        <strong>Make room for what comes next.</strong>
-                        <em>Begin your journey</em>
+                        <small>BOZEMAN, MONTANA</small>
+                        <strong>Therapy for where you are now—and where you want to go.</strong>
+                        <em>Explore services</em>
                       </div>
                     </div>
-                    <div class="horizon-bottom"><span>ROOTED IN PLACE</span><span>BUILT FOR CHANGE</span></div>
+                    <div class="horizon-bottom"><span>A WIDER VIEW</span><span>CLEARER DIRECTION</span></div>
                   </div>
                 )}
               </div>
@@ -213,6 +214,8 @@ const demos = [
       }
     </div>
   </section>
+
+  <WorkValueCase />
 </Layout>
 
 <style>
