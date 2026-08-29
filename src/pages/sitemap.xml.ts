@@ -6,6 +6,7 @@ const pages = [
   '/contact/',
   '/process/',
   '/services/',
+  '/website-strategy/',
   '/work/',
 ];
 
