@@ -1,0 +1,154 @@
+/* Work-page preview refinements.
+ * These selectors are unique to the Work demo miniatures and intentionally
+ * do not alter the rest of the Brighter Sites marketing site.
+ */
+
+/* Evergreen: make the preview feel like a complete, warm therapy site rather
+ * than an abstract green illustration sitting in a browser frame. */
+.portfolio-preview--evergreen {
+  background:
+    radial-gradient(circle at 19% 16%, rgba(255,255,255,.55), transparent 24%),
+    linear-gradient(135deg, #e7ede3 0%, #b7c6b9 52%, #879b8e 100%);
+}
+
+.evergreen-mini {
+  background: #faf8f1;
+}
+
+.evergreen-hero {
+  grid-template-columns: 1.03fr .97fr;
+  min-height: 11.9rem;
+  gap: .85rem;
+  padding: 1.25rem 1rem .85rem 1.2rem;
+}
+
+.evergreen-art {
+  position: relative;
+  min-height: 9.8rem;
+  overflow: hidden;
+  border: 1px solid rgba(41,72,63,.08);
+  border-radius: 1.15rem 3.4rem 1.15rem 1.15rem;
+  background:
+    radial-gradient(circle at 68% 25%, rgba(250,237,202,.96) 0 8%, rgba(250,237,202,.42) 9% 17%, transparent 29%),
+    linear-gradient(180deg, rgba(226,234,218,.96) 0 44%, rgba(176,194,178,.94) 45% 67%, rgba(104,130,111,.96) 68% 100%);
+  box-shadow: inset 0 0 2.5rem rgba(255,255,255,.22);
+}
+
+/* Soft layered landscape shapes give the illustration depth without trying
+ * to imitate a literal stock photo at miniature size. */
+.evergreen-art::before,
+.evergreen-art::after {
+  position: absolute;
+  right: -12%;
+  bottom: -16%;
+  left: -12%;
+  display: block;
+  content: '';
+  border-radius: 48% 52% 0 0 / 100% 100% 0 0;
+  transform-origin: bottom center;
+}
+
+.evergreen-art::before {
+  height: 43%;
+  background: #78927d;
+  opacity: .72;
+  transform: rotate(-5deg);
+}
+
+.evergreen-art::after {
+  height: 31%;
+  bottom: -10%;
+  background: #536f5d;
+  opacity: .82;
+  transform: rotate(7deg) scaleX(1.08);
+}
+
+.evergreen-art .leaf {
+  z-index: 3;
+  width: 1.8rem;
+  height: 4.2rem;
+  border-radius: 100% 0 100% 0;
+  background: rgba(43,77,61,.5);
+  box-shadow: inset .18rem .12rem .3rem rgba(255,255,255,.08);
+}
+
+.evergreen-art .leaf::after {
+  position: absolute;
+  width: .06rem;
+  height: 78%;
+  left: 50%;
+  bottom: 4%;
+  border-radius: 999px;
+  background: rgba(239,244,233,.34);
+  content: '';
+  transform: rotate(-10deg);
+}
+
+.evergreen-art .leaf-one {
+  bottom: -.65rem;
+  left: 13%;
+  transform: rotate(-18deg);
+}
+
+.evergreen-art .leaf-two {
+  bottom: -.9rem;
+  left: 31%;
+  transform: rotate(18deg) scale(.82);
+}
+
+.evergreen-art .leaf-three {
+  right: 8%;
+  bottom: -.7rem;
+  transform: rotate(31deg) scale(.72);
+}
+
+/* Turn the old decorative footer bars into a believable compact services row. */
+.evergreen-footer-line {
+  grid-template-columns: repeat(3,1fr);
+  gap: .42rem;
+  padding: .15rem 1rem 1rem;
+}
+
+.evergreen-footer-line span {
+  position: relative;
+  height: 2.05rem;
+  padding: .5rem .42rem .35rem;
+  border: 1px solid rgba(41,72,63,.08);
+  border-radius: .55rem;
+  background: rgba(255,255,255,.5);
+  color: #526f62;
+  font-size: .37rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-align: center;
+}
+
+.evergreen-footer-line span::before {
+  display: block;
+  margin-bottom: .18rem;
+  color: #29483f;
+  font-family: Georgia, serif;
+  font-size: .48rem;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.evergreen-footer-line span:nth-child(1)::before { content: 'Anxiety'; }
+.evergreen-footer-line span:nth-child(2)::before { content: 'Trauma'; }
+.evergreen-footer-line span:nth-child(3)::before { content: 'Transitions'; }
+
+.evergreen-footer-line span:nth-child(1)::after,
+.evergreen-footer-line span:nth-child(2)::after,
+.evergreen-footer-line span:nth-child(3)::after {
+  content: 'SUPPORT';
+}
+
+@media (max-width: 31rem) {
+  .evergreen-art {
+    border-radius: 1rem 2.6rem 1rem 1rem;
+  }
+
+  .evergreen-footer-line span {
+    height: 1.85rem;
+  }
+}
