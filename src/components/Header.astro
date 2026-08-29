@@ -1,5 +1,5 @@
 ---
-import { navigation, primaryCta } from '../data/site';
+import { clientPortalUrl, navigation, primaryCta } from '../data/site';
 
 const path = Astro.url.pathname;
 ---
@@ -29,6 +29,7 @@ const path = Astro.url.pathname;
           </a>
         ))
       }
+      <a href={clientPortalUrl}>Client Portal</a>
     </nav>
 
     <a class="header-cta desktop-cta" href={primaryCta}>
@@ -63,6 +64,8 @@ const path = Astro.url.pathname;
               </a>
             ))
           }
+
+          <a href={clientPortalUrl}>Client Portal</a>
 
           <a class="mobile-menu-cta" href={primaryCta}>
             Start a project
