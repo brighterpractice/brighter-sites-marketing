@@ -4,6 +4,7 @@ const pages = [
   '/',
   '/about/',
   '/contact/',
+  '/faq/',
   '/process/',
   '/services/',
   '/website-strategy/',
