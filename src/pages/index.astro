@@ -6,7 +6,7 @@ import Layout from '../layouts/Layout.astro';
   <section class="hero">
     <div class="container hero-grid">
       <div class="hero-copy">
-        <p class="eyebrow">Websites built for therapists</p>
+        <p class="eyebrow">Custom websites built for therapists</p>
 
         <h1>
           A professional website should make your practice feel
@@ -14,8 +14,9 @@ import Layout from '../layouts/Layout.astro';
         </h1>
 
         <p class="hero-lead">
-          Brighter Sites creates custom, polished, mobile-friendly websites
-          specifically for therapists and counseling practices.
+          Brighter Sites designs and builds your website around your actual
+          practice, handles the technical launch, and can keep managing the
+          web side of the business after you go live.
         </p>
 
         <div class="hero-actions">
@@ -55,6 +56,23 @@ import Layout from '../layouts/Layout.astro';
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="confidence-strip" aria-label="What working with Brighter Sites includes">
+    <div class="container confidence-grid">
+      <div>
+        <strong>Custom from the start</strong>
+        <span>Designed around your practice—not a prebuilt therapy template.</span>
+      </div>
+      <div>
+        <strong>The technical work is handled</strong>
+        <span>Mobile, domain, launch, search setup, and the details behind the site.</span>
+      </div>
+      <div>
+        <strong>Support stays optional</strong>
+        <span>Keep managing with us after launch, or transition the site under your agreement.</span>
       </div>
     </div>
   </section>
@@ -208,7 +226,7 @@ import Layout from '../layouts/Layout.astro';
         </p>
 
         <p style="margin-top:1.5rem">
-          <a class="text-link" href="/work/">See the difference in our work →</a>
+          <a class="text-link" href="/website-strategy/">Why the strategy behind the site matters →</a>
         </p>
       </div>
     </div>
@@ -233,3 +251,60 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 </Layout>
+
+<style>
+  .confidence-strip {
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: white;
+  }
+
+  .confidence-grid {
+    display: grid;
+  }
+
+  .confidence-grid > div {
+    display: grid;
+    gap: .3rem;
+    padding: 1.35rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .confidence-grid > div:last-child {
+    border-bottom: 0;
+  }
+
+  .confidence-grid strong {
+    color: var(--ink);
+    font-size: .92rem;
+  }
+
+  .confidence-grid span {
+    max-width: 25rem;
+    color: var(--body);
+    font-size: .82rem;
+    line-height: 1.5;
+  }
+
+  @media (min-width: 48rem) {
+    .confidence-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .confidence-grid > div {
+      min-height: 7rem;
+      padding: 1.4rem 1.8rem;
+      border-right: 1px solid var(--line);
+      border-bottom: 0;
+    }
+
+    .confidence-grid > div:first-child {
+      padding-left: 0;
+    }
+
+    .confidence-grid > div:last-child {
+      padding-right: 0;
+      border-right: 0;
+    }
+  }
+</style>
