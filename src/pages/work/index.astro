@@ -4,32 +4,40 @@ import Layout from '../../layouts/Layout.astro';
 const demos = [
   {
     name: 'Evergreen Counseling Collective',
+    scope: 'Focused practice site',
+    pages: '7 primary pages',
     description:
-      'A warm, grounded counseling website built around soft greens, organic imagery, calm typography, and straightforward client navigation.',
+      'A warm, grounded seven-page counseling website built around soft greens, organic imagery, calm typography, and straightforward client navigation.',
     tags: ['Warm', 'Organic', 'Grounded'],
     href: 'https://evergreen.brightersites.app',
     preview: 'evergreen',
   },
   {
     name: 'Align Therapy Group',
+    scope: 'Expanded practice site',
+    pages: '15 primary pages',
     description:
-      'A sleek, contemporary counseling website with structured layouts, clean blue tones, and a polished group-practice feel.',
+      'A more developed 15-page counseling website with structured layouts, clean blue tones, dedicated service content, and a polished group-practice feel.',
     tags: ['Modern', 'Structured', 'Contemporary'],
     href: 'https://align.brightersites.app',
     preview: 'align',
   },
   {
     name: 'Common Ground Therapy',
+    scope: 'Full custom practice site',
+    pages: '19 primary pages',
     description:
-      'A more expressive, personality-forward therapy website using richer color, editorial layouts, and a warmer visual energy.',
+      'A larger custom therapy website using richer color, editorial layouts, deeper service and approach content, and a warmer visual energy.',
     tags: ['Expressive', 'Warm', 'Distinctive'],
     href: 'https://common.brightersites.app',
     preview: 'common',
   },
   {
     name: 'Horizon Therapy',
+    scope: 'Full custom practice site',
+    pages: '20 primary pages',
     description:
-      'An immersive, scenic counseling website built around expansive Montana imagery, cinematic presentation, and a strong sense of place.',
+      'An immersive, full-scale counseling website built around expansive Montana imagery, cinematic presentation, deeper content, and a strong sense of place.',
     tags: ['Immersive', 'Scenic', 'Cinematic'],
     href: 'https://horizon.brightersites.app',
     preview: 'horizon',
@@ -46,8 +54,14 @@ const demos = [
       <p class="eyebrow">Our work</p>
       <h1>Different practices deserve different websites.</h1>
       <p class="page-lead">
-        Explore four fully navigable demonstration websites. Each was designed
-        around a different visual direction, practice personality, and client experience.
+        Explore four fully navigable demonstration websites. They range from a
+        focused seven-page practice site to larger custom builds with nearly
+        three times the content depth, while each keeps its own visual direction,
+        practice personality, and client experience.
+      </p>
+      <p class="scope-note">
+        Page counts refer to primary content pages. Privacy, terms, and other
+        utility pages are not included.
       </p>
     </div>
   </section>
@@ -61,6 +75,11 @@ const demos = [
               <p class="eyebrow">
                 {index === 0 ? 'Featured demo' : 'Live demo'}
               </p>
+
+              <div class="scope-row" aria-label={`Site scope: ${demo.scope}, ${demo.pages}`}>
+                <span class="scope-badge">{demo.scope}</span>
+                <span class="scope-pages">{demo.pages}</span>
+              </div>
 
               <h2>{demo.name}</h2>
 
@@ -197,6 +216,13 @@ const demos = [
 </Layout>
 
 <style>
+  .scope-note {
+    max-width: 43rem;
+    margin-top: 1rem;
+    color: var(--body);
+    font-size: .86rem;
+  }
+
   .demo-list {
     display: grid;
     gap: clamp(2rem, 5vw, 4rem);
@@ -217,6 +243,7 @@ const demos = [
   }
 
   .portfolio-copy h2 {
+    margin-top: .85rem;
     color: var(--ink);
   }
 
@@ -228,6 +255,34 @@ const demos = [
 
   .portfolio-copy .eyebrow {
     color: var(--teal-dark);
+  }
+
+  .scope-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .55rem .75rem;
+    margin-top: .85rem;
+  }
+
+  .scope-badge {
+    display: inline-flex;
+    align-items: center;
+    min-height: 1.9rem;
+    padding: .35rem .7rem;
+    border: 1px solid rgba(39,119,111,.22);
+    border-radius: 999px;
+    background: var(--teal-light);
+    color: var(--teal-dark);
+    font-size: .72rem;
+    font-weight: 800;
+    letter-spacing: .02em;
+  }
+
+  .scope-pages {
+    color: var(--body);
+    font-size: .78rem;
+    font-weight: 750;
   }
 
   .tag-row {
