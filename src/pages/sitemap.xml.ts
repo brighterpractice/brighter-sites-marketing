@@ -5,8 +5,10 @@ const pages = [
   '/about/',
   '/contact/',
   '/faq/',
+  '/privacy/',
   '/process/',
   '/services/',
+  '/terms/',
   '/website-strategy/',
   '/work/',
 ];
