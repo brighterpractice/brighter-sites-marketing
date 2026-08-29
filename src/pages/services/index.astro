@@ -27,8 +27,9 @@ import Layout from '../../layouts/Layout.astro';
         <h2>Start with the level of help your practice needs.</h2>
 
         <p>
-          These prices cover most solo and small-practice projects. Larger,
-          more complex, or highly customized projects are quoted separately.
+          Every website is custom designed and built. Price changes with scope,
+          content depth, integrations, and project complexity—not whether the
+          site is custom.
         </p>
       </div>
 
@@ -72,6 +73,19 @@ import Layout from '../../layouts/Layout.astro';
 
           <a class="button" href="/contact/">Plan my online launch</a>
         </article>
+      </div>
+
+      <div class="ownership-note">
+        <div>
+          <p class="eyebrow">Your website is separate from ongoing care</p>
+          <h3>Support is optional after launch.</h3>
+        </div>
+        <p>
+          Choosing a monthly care plan does not mean repurchasing your website
+          every month. If you later stop ongoing service, the paid-for website
+          does not need to be purchased again; transition and handoff are
+          handled under your service agreement.
+        </p>
       </div>
     </div>
   </section>
@@ -132,18 +146,22 @@ import Layout from '../../layouts/Layout.astro';
     <div class="container">
       <div class="section-heading">
         <p class="eyebrow">Ongoing website care</p>
-        <h2>Keep the site healthy after launch.</h2>
+        <h2>Choose how much you want us paying attention after launch.</h2>
 
         <p>
-          Ongoing care is optional. Choose the level that matches how much
-          maintenance and hands-on support you want.
+          The three levels are intentionally simple: monitor the essentials,
+          maintain the site with you, or actively use the data to improve it.
         </p>
       </div>
 
-      <div class="pricing-grid pricing-grid-three">
-        <article class="pricing-card">
+      <div class="pricing-grid pricing-grid-three care-grid">
+        <article class="pricing-card care-card">
+          <p class="care-intent">Monitor</p>
           <p class="pricing-label">Site Monitor</p>
           <p class="pricing-price">$29<span>/month</span></p>
+          <p class="care-summary">
+            For practices that mainly want someone watching the technical basics.
+          </p>
 
           <ul class="pricing-list">
             <li>Website uptime monitoring</li>
@@ -153,9 +171,13 @@ import Layout from '../../layouts/Layout.astro';
           </ul>
         </article>
 
-        <article class="pricing-card">
+        <article class="pricing-card care-card">
+          <p class="care-intent">Maintain</p>
           <p class="pricing-label">Site Care</p>
           <p class="pricing-price">$79<span>/month</span></p>
+          <p class="care-summary">
+            For practices that want regular review plus help with routine changes.
+          </p>
 
           <ul class="pricing-list">
             <li>Everything in Site Monitor</li>
@@ -165,14 +187,14 @@ import Layout from '../../layouts/Layout.astro';
           </ul>
         </article>
 
-        <article class="pricing-card pricing-card-featured">
+        <article class="pricing-card pricing-card-featured care-card">
+          <p class="care-intent">Improve</p>
           <p class="pricing-label">Managed Growth</p>
           <p class="pricing-price">$179<span>/month</span></p>
 
-          <p>
-            For practices that want someone actively reviewing the website,
-            interpreting the data, and making useful improvements—not simply
-            monitoring whether the site is online.
+          <p class="care-summary">
+            For practices that want a person actively reviewing performance,
+            deciding what matters, and making useful improvements.
           </p>
 
           <ul class="pricing-list">
@@ -188,14 +210,25 @@ import Layout from '../../layouts/Layout.astro';
         </article>
       </div>
 
-      <p class="pricing-note">
-        Additional work outside a care plan is calculated at $100 per hour in
-        15-minute increments, but billable work does not begin without your
-        approval. Send us the change you want and we will review the scope and
-        provide a written quote for that defined work. Once you approve it,
-        that is the price for the quoted scope. If the request changes, we will
-        confirm a revised quote with you before doing additional work.
-      </p>
+      <div class="quote-panel">
+        <div>
+          <p class="eyebrow">Additional work</p>
+          <h3>Know the price before we start.</h3>
+        </div>
+        <div>
+          <p>
+            Additional work is calculated at <strong>$100 per hour in
+            15-minute increments</strong>, but that is how we calculate the
+            quote—not an open-ended meter.
+          </p>
+          <p>
+            Send us what you want changed. We review the request and give you a
+            written price for the defined work. Nothing billable begins until
+            you approve it. If the scope changes, we give you a revised quote
+            before doing additional work.
+          </p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -258,3 +291,81 @@ import Layout from '../../layouts/Layout.astro';
     </div>
   </section>
 </Layout>
+
+<style>
+  .ownership-note,
+  .quote-panel {
+    display: grid;
+    gap: 1.25rem 2.5rem;
+    margin-top: 2rem;
+    padding: clamp(1.5rem, 4vw, 2.25rem);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: #f7faf8;
+  }
+
+  .ownership-note h3,
+  .quote-panel h3 {
+    font-size: clamp(1.45rem, 2.5vw, 2rem);
+  }
+
+  .ownership-note > p,
+  .quote-panel > div:last-child {
+    max-width: 46rem;
+  }
+
+  .ownership-note .eyebrow,
+  .quote-panel .eyebrow {
+    margin-bottom: .45rem;
+  }
+
+  .care-card {
+    position: relative;
+  }
+
+  .care-intent {
+    width: fit-content;
+    margin-bottom: 1rem;
+    padding: .35rem .65rem;
+    border-radius: 999px;
+    background: var(--teal-light);
+    color: var(--teal-dark);
+    font-size: .72rem;
+    font-weight: 850;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  .pricing-card-featured .care-intent {
+    background: rgba(255,255,255,.14);
+    color: inherit;
+  }
+
+  .care-summary {
+    margin-top: .8rem;
+    color: var(--ink-soft);
+    font-size: .92rem;
+    line-height: 1.55;
+  }
+
+  .pricing-card-featured .care-summary {
+    color: inherit;
+  }
+
+  .quote-panel {
+    margin-top: 2.5rem;
+    background: white;
+  }
+
+  .quote-panel p + p {
+    margin-top: .85rem;
+  }
+
+  @media (min-width: 48rem) {
+    .ownership-note,
+    .quote-panel {
+      grid-template-columns: .7fr 1.3fr;
+      align-items: start;
+    }
+  }
+</style>
