@@ -11,4 +11,5 @@ export const navigation = [
   { label: 'About', href: '/about/' },
 ];
 
+export const clientPortalUrl = 'https://portal.brightersites.app/portal';
 export const primaryCta = '/contact/';
