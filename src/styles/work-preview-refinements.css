@@ -132,9 +132,13 @@
   display: inline;
 }
 
-.evergreen-footer-line span:nth-child(1)::before { content: 'Anxiety '; }
-.evergreen-footer-line span:nth-child(2)::before { content: 'Trauma '; }
-.evergreen-footer-line span:nth-child(3)::before { content: 'Transitions '; }
+.evergreen-footer-line span::before {
+  margin-right: .12rem;
+}
+
+.evergreen-footer-line span:nth-child(1)::before { content: 'Anxiety'; }
+.evergreen-footer-line span:nth-child(2)::before { content: 'Trauma'; }
+.evergreen-footer-line span:nth-child(3)::before { content: 'Transitions'; }
 
 .evergreen-footer-line span:nth-child(1)::after,
 .evergreen-footer-line span:nth-child(2)::after,
