@@ -87,6 +87,33 @@ import Layout from '../../layouts/Layout.astro';
           handled under your service agreement.
         </p>
       </div>
+
+      <div class="third-party-note">
+        <div>
+          <p class="eyebrow">Third-party costs</p>
+          <h3>Setup pricing covers our work—not somebody else’s subscription.</h3>
+        </div>
+        <div>
+          <p>
+            Unless a written quote specifically says otherwise, the Brighter
+            Sites prices shown here cover our labor to set up, configure, and
+            connect the service. Purchases and recurring charges from outside
+            providers are separate.
+          </p>
+          <p>
+            Examples include domain registration and renewal, additional or
+            premium domain names, the Google Workspace plan you choose, and any
+            other paid software, phone, email, hosting, or third-party service
+            your project requires. If you want several domains—for example the
+            same practice name across <strong>.com, .net, and .app</strong>—each
+            registration is a separate provider cost.
+          </p>
+          <p>
+            We will identify any required third-party cost before it is
+            purchased so you can approve both the service and the expense.
+          </p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -98,7 +125,9 @@ import Layout from '../../layouts/Layout.astro';
 
         <p>
           These services can be added individually when you do not need the
-          complete launch package.
+          complete launch package. The prices below are for Brighter Sites’
+          setup and configuration work; third-party purchases and subscriptions
+          are separate unless specifically included in your quote.
         </p>
       </div>
 
@@ -108,7 +137,8 @@ import Layout from '../../layouts/Layout.astro';
           <h3>Google Workspace setup</h3>
           <p>
             Business email setup, domain verification, and the essential
-            Workspace configuration for your practice.
+            Workspace configuration for your practice. Google’s Workspace
+            subscription charge is separate.
           </p>
         </article>
 
@@ -126,7 +156,8 @@ import Layout from '../../layouts/Layout.astro';
           <h3>Domain, Cloudflare & DNS</h3>
           <p>
             Domain connection, DNS configuration, Cloudflare setup, and the
-            technical records needed for your website and email.
+            technical records needed for your website and email. Domain
+            registration and renewal charges are separate.
           </p>
         </article>
 
@@ -294,6 +325,7 @@ import Layout from '../../layouts/Layout.astro';
 
 <style>
   .ownership-note,
+  .third-party-note,
   .quote-panel {
     display: grid;
     gap: 1.25rem 2.5rem;
@@ -305,18 +337,30 @@ import Layout from '../../layouts/Layout.astro';
   }
 
   .ownership-note h3,
+  .third-party-note h3,
   .quote-panel h3 {
     font-size: clamp(1.45rem, 2.5vw, 2rem);
   }
 
   .ownership-note > p,
+  .third-party-note > div:last-child,
   .quote-panel > div:last-child {
     max-width: 46rem;
   }
 
   .ownership-note .eyebrow,
+  .third-party-note .eyebrow,
   .quote-panel .eyebrow {
     margin-bottom: .45rem;
+  }
+
+  .third-party-note {
+    background: #fffdf8;
+  }
+
+  .third-party-note p + p,
+  .quote-panel p + p {
+    margin-top: .85rem;
   }
 
   .care-grid {
@@ -361,12 +405,9 @@ import Layout from '../../layouts/Layout.astro';
     background: white;
   }
 
-  .quote-panel p + p {
-    margin-top: .85rem;
-  }
-
   @media (min-width: 48rem) {
     .ownership-note,
+    .third-party-note,
     .quote-panel {
       grid-template-columns: .7fr 1.3fr;
       align-items: start;
