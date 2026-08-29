@@ -33,6 +33,11 @@ const faqGroups = [
     title: 'Know what you are paying for',
     items: [
       {
+        question: 'What is the Founding Practice Program?',
+        answer:
+          'For the first five qualifying practice clients, Brighter Sites is offering a Professional Website starting at $1,250 instead of the normal $1,500 starting price, plus the first 90 days of Managed Growth at no additional cost after launch. Larger scopes, additional services, and third-party purchases are still quoted separately. After the included 90 days, ongoing care remains optional.',
+      },
+      {
         question: 'Does the website price include everything I might ever need?',
         answer:
           'No. Website pricing covers the defined Brighter Sites design, development, setup, and launch work in your written scope. Larger page counts, unusual integrations, substantial content work, or additional services can change the project price. Those items should be identified and quoted rather than quietly added to a bill later.',
@@ -55,7 +60,7 @@ const faqGroups = [
       {
         question: 'Do I have to keep paying Brighter Sites every month after launch?',
         answer:
-          'No. Ongoing care is optional. The website project and the monthly care plans are separate services. If you want Brighter Sites to keep monitoring, maintaining, or improving the site, you can choose a care plan. If you do not, transition and handoff are handled under your service agreement; you do not repurchase the paid-for website simply because ongoing care ends.',
+          'No. Ongoing care is optional. The website project and the care plans are separate services. Managed Growth can be continued month to month at $179, with a 12-month commitment at $159 per month billed monthly, or at $1,788 prepaid annually, which is equivalent to $149 per month. You can also choose another care level or stop ongoing service according to your agreement. Founding practices receive their first 90 days of Managed Growth after launch at no additional cost before deciding what to do next.',
       },
     ],
   },
@@ -97,12 +102,12 @@ const faqGroups = [
       {
         question: 'What is the difference between Site Monitor, Site Care, and Managed Growth?',
         answer:
-          'Site Monitor watches core technical basics such as uptime, SSL, domains, and site health. Site Care adds regular review and a small amount of routine change and maintenance time. Managed Growth goes further by reviewing search and website performance, deciding what opportunities matter, and using included work time to make useful improvements.',
+          'Site Monitor watches core technical basics such as uptime, SSL, domains, and site health. Site Care adds regular review and a small amount of routine change and maintenance time. Managed Growth goes further by reviewing search and website performance, delivering a monthly written report with findings and recommendations, deciding what opportunities matter, and using included work time to make useful improvements.',
       },
       {
         question: 'What does monthly analytics review actually tell me?',
         answer:
-          'Analytics and Search Console can help answer practical questions: Are people finding the site? Which pages attract attention? What searches are creating visibility? Are visitors reaching important service or contact paths? Are there pages that are not helping? The value is not another dashboard; it is using the information to decide what should improve next.',
+          'Analytics and Search Console can help answer practical questions: Are people finding the site? Which pages attract attention? What searches are creating visibility? Are visitors reaching important service or contact paths? Are there pages that are not helping? The value is not another dashboard; it is using the information to decide what should improve next. Managed Growth clients receive those findings in a monthly written website report.',
       },
       {
         question: 'Do you need access to client records or clinical information to manage the website?',
@@ -383,8 +388,8 @@ const faqSchema = {
 
   .resource-links span {
     color: var(--body);
-    font-size: .9rem;
-    line-height: 1.5;
+    font-size: .88rem;
+    line-height: 1.45;
   }
 
   .resource-links a:hover strong,
@@ -392,21 +397,18 @@ const faqSchema = {
     color: var(--teal-dark);
   }
 
-  @media (min-width: 48rem) {
-    .faq-intro-grid {
-      grid-template-columns: 1.1fr .9fr;
-      align-items: end;
-    }
-
+  @media (min-width: 42rem) {
     .promise-grid {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(2, 1fr);
     }
+  }
 
+  @media (min-width: 58rem) {
+    .faq-intro-grid,
     .faq-group-grid,
     .faq-resources {
-      grid-template-columns: .72fr 1.28fr;
+      grid-template-columns: .75fr 1.25fr;
       align-items: start;
-      gap: clamp(3rem, 7vw, 6rem);
     }
 
     .faq-group-heading {
