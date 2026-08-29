@@ -1,4 +1,6 @@
 ---
+import { clientPortalUrl } from '../data/site';
+
 const lastUpdated = new Intl.DateTimeFormat('en-US', {
   timeZone: 'America/Denver',
   month: 'short',
@@ -24,6 +26,7 @@ const lastUpdated = new Intl.DateTimeFormat('en-US', {
       <a href="/services/">Pricing & Services</a>
       <a href="/process/">Process</a>
       <a href="/contact/">Contact</a>
+      <a href={clientPortalUrl}>Client Portal</a>
     </div>
   </div>
 
