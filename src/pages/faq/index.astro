@@ -1,0 +1,417 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const faqGroups = [
+  {
+    eyebrow: 'Planning the project',
+    title: 'Before we start building',
+    items: [
+      {
+        question: 'Is every Brighter Sites website custom built?',
+        answer:
+          'Yes. Every website is designed and built around the practice, its services, its content, and the experience it needs to create for prospective clients. Project size changes the scope and content depth, not whether the site is custom. Custom also does not mean reinventing basic web technology for no reason; it means your site is not simply your information dropped into a purchased therapy template.',
+      },
+      {
+        question: 'What do you need from me to build the site?',
+        answer:
+          'You provide the practice knowledge: your services, clinician information, location, contact and appointment details, preferences, and any photos, logos, or existing material you want considered. We guide the structure, design, technical setup, and launch so you do not need to know how to build a website yourself.',
+      },
+      {
+        question: 'How long does a website project take?',
+        answer:
+          'Timing depends on the size of the site, how much content is needed, integrations, and how quickly required information and feedback are available. Before billable project work begins, the proposal should give you a clear scope and expected schedule so you are not guessing about the process.',
+      },
+      {
+        question: 'Can you redesign my existing therapy website instead of starting over?',
+        answer:
+          'Yes. An existing site can be reviewed first. If the current structure is sound, a focused redesign may make more sense. If the site has deeper technical, content, or usability problems, a rebuild may be the better value. We would rather recommend the smaller solution when it actually solves the problem.',
+      },
+    ],
+  },
+  {
+    eyebrow: 'Pricing, revisions & ownership',
+    title: 'Know what you are paying for',
+    items: [
+      {
+        question: 'Does the website price include everything I might ever need?',
+        answer:
+          'No. Website pricing covers the defined Brighter Sites design, development, setup, and launch work in your written scope. Larger page counts, unusual integrations, substantial content work, or additional services can change the project price. Those items should be identified and quoted rather than quietly added to a bill later.',
+      },
+      {
+        question: 'Are domain names and third-party subscriptions included in setup prices?',
+        answer:
+          'Unless a written quote specifically says otherwise, no. Domain registration and renewals, premium domains, additional domain names, Google Workspace plans and user seats, phone or email services, and other paid third-party software are billed by those providers separately. Brighter Sites setup prices cover our labor to configure the services listed in your scope.',
+      },
+      {
+        question: 'What happens if I ask for additional work?',
+        answer:
+          'Additional work is calculated at the published hourly rate in 15-minute increments, but that rate is used to calculate the quote rather than start an open-ended clock. Send us the change you want, we review the scope, and you receive a written price. Billable work does not begin until you approve it. If the scope changes, we confirm a revised quote before doing additional work.',
+      },
+      {
+        question: 'How do revisions work during the website project?',
+        answer:
+          'Your proposal and service agreement define the included revision process. You review the actual website as the project develops and we refine the presentation within the agreed scope. If a request becomes a substantial new feature, new page group, or other major expansion beyond the approved scope, it can be quoted separately before that work begins.',
+      },
+      {
+        question: 'Do I have to keep paying Brighter Sites every month after launch?',
+        answer:
+          'No. Ongoing care is optional. The website project and the monthly care plans are separate services. If you want Brighter Sites to keep monitoring, maintaining, or improving the site, you can choose a care plan. If you do not, transition and handoff are handled under your service agreement; you do not repurchase the paid-for website simply because ongoing care ends.',
+      },
+    ],
+  },
+  {
+    eyebrow: 'SEO, domains & DIY builders',
+    title: 'What actually helps a website get found',
+    items: [
+      {
+        question: 'Can Brighter Sites guarantee that I will rank number one on Google?',
+        answer:
+          'No, and a responsible developer or SEO provider should not promise that. Rankings depend on competition, location, content quality, domain history and authority, links and mentions from other sites, search intent, Google systems, and time. We can build a strong technical and content foundation, measure what happens, and keep improving the site based on real information.',
+      },
+      {
+        question: 'Why hire Brighter Sites instead of building the website myself with Wix?',
+        answer:
+          'Wix and similar platforms can produce functional websites and can rank in search. The difference is responsibility. With a DIY builder, you are also the designer, content planner, mobile tester, technical administrator, SEO decision-maker, analytics interpreter, and ongoing maintainer. Brighter Sites is for practice owners who want those web decisions and implementation handled with them rather than becoming their own web department.',
+      },
+      {
+        question: 'Should I buy more than one domain name for my practice?',
+        answer:
+          'Sometimes. Additional domains can make sense for brand protection, common spelling variations, or preventing someone else from registering a closely related name. They do not create multiple versions of your SEO ranking. In most cases one domain remains the primary website and the extra domains redirect to it.',
+      },
+      {
+        question: 'Does having more pages automatically improve SEO?',
+        answer:
+          'No. More pages help only when they give searchers useful, distinct information. A well-developed service, clinician, location, or educational page can create another meaningful way for someone to find the practice. Thin pages created only to increase page count can make the site less useful and do not create automatic ranking value.',
+      },
+      {
+        question: 'What does Brighter Sites actually do for SEO?',
+        answer:
+          'The work can include clear page structure, useful titles and descriptions, understandable URLs, heading hierarchy, canonical URLs, crawlable navigation, sitemap and indexing support, internal linking, mobile usability, performance, local-search setup, Search Console, analytics, and content organization. SEO is the combined effect of many pieces rather than a single switch that gets turned on.',
+      },
+    ],
+  },
+  {
+    eyebrow: 'After launch',
+    title: 'Keeping the site useful over time',
+    items: [
+      {
+        question: 'What is the difference between Site Monitor, Site Care, and Managed Growth?',
+        answer:
+          'Site Monitor watches core technical basics such as uptime, SSL, domains, and site health. Site Care adds regular review and a small amount of routine change and maintenance time. Managed Growth goes further by reviewing search and website performance, deciding what opportunities matter, and using included work time to make useful improvements.',
+      },
+      {
+        question: 'What does monthly analytics review actually tell me?',
+        answer:
+          'Analytics and Search Console can help answer practical questions: Are people finding the site? Which pages attract attention? What searches are creating visibility? Are visitors reaching important service or contact paths? Are there pages that are not helping? The value is not another dashboard; it is using the information to decide what should improve next.',
+      },
+      {
+        question: 'Do you need access to client records or clinical information to manage the website?',
+        answer:
+          'No. Website performance and search work should not require therapy notes, diagnoses, appointment contents, or other clinical records. Brighter Sites focuses on public website content, search visibility, aggregate site use, technical health, and the public-facing path a prospective client takes through the site.',
+      },
+      {
+        question: 'What if my practice changes after the website launches?',
+        answer:
+          'That is normal. Services change, clinicians join or leave, locations move, credentials are updated, and the questions prospective clients ask can change. Small updates can be handled through a care plan or quoted individually. Larger additions can be scoped and priced before work begins.',
+      },
+    ],
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqGroups.flatMap((group) =>
+    group.items.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
+    }))
+  ),
+};
+---
+
+<Layout
+  title="Website Design FAQ for Therapists | Brighter Sites"
+  description="Answers about custom therapy websites, pricing, revisions, ownership, domains, SEO, Wix, ongoing care, analytics, and what happens after launch."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <section class="page-intro faq-intro">
+    <div class="container faq-intro-grid">
+      <div>
+        <p class="eyebrow">Before you start</p>
+        <h1>Questions worth answering before you hire someone to build your website.</h1>
+      </div>
+
+      <div class="faq-lead">
+        <p>
+          A website project involves more than colors and pages. There are
+          questions about cost, ownership, domains, subscriptions, revisions,
+          search visibility, analytics, and what happens after launch.
+        </p>
+        <p>
+          We would rather make those expectations clear before you spend money.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section faq-promises-section">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">What we will not sell you</p>
+        <h2>Clear expectations are part of the service.</h2>
+      </div>
+
+      <div class="promise-grid">
+        <article>
+          <h3>No guaranteed #1 ranking</h3>
+          <p>We build and improve the foundation. Nobody controls Google’s final ranking decisions.</p>
+        </article>
+        <article>
+          <h3>No domain-name SEO trick</h3>
+          <p>Extra domains can protect a brand, but buying five domains does not create five search rankings.</p>
+        </article>
+        <article>
+          <h3>No open-ended billing</h3>
+          <p>Additional work is scoped and quoted for approval before billable work begins.</p>
+        </article>
+        <article>
+          <h3>No required monthly plan</h3>
+          <p>Ongoing monitoring and management are optional services after the website project.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  {
+    faqGroups.map((group, groupIndex) => (
+      <section class={`section faq-group ${groupIndex % 2 === 0 ? 'tint' : ''}`}>
+        <div class="container faq-group-grid">
+          <div class="faq-group-heading">
+            <p class="eyebrow">{group.eyebrow}</p>
+            <h2>{group.title}</h2>
+          </div>
+
+          <div class="faq-list">
+            {group.items.map((item) => (
+              <details class="faq-item">
+                <summary>
+                  <span>{item.question}</span>
+                  <i aria-hidden="true">+</i>
+                </summary>
+                <div class="faq-answer">
+                  <p>{item.answer}</p>
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+    ))
+  }
+
+  <section class="section">
+    <div class="container faq-resources">
+      <div>
+        <p class="eyebrow">Want the deeper explanation?</p>
+        <h2>See how the website, search, and management pieces fit together.</h2>
+      </div>
+
+      <div class="resource-links">
+        <a href="/website-strategy/">
+          <strong>Website Strategy</strong>
+          <span>Why structure, SEO, analytics, domains, and ongoing improvement matter →</span>
+        </a>
+        <a href="/services/">
+          <strong>Pricing & Services</strong>
+          <span>See website packages, setup services, and ongoing care →</span>
+        </a>
+        <a href="/process/">
+          <strong>Our Process</strong>
+          <span>See what happens from discovery through launch →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="cta-panel">
+        <p class="eyebrow">Still have a question?</p>
+        <h2>You do not need to have the project figured out before contacting us.</h2>
+        <p>
+          Tell us what you are trying to accomplish and what you are unsure
+          about. We can work out the right scope before you commit to the work.
+        </p>
+        <a class="button" href="/contact/">Ask about your website</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .faq-intro-grid,
+  .faq-group-grid,
+  .faq-resources {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .faq-intro h1 {
+    max-width: 18ch;
+  }
+
+  .faq-lead {
+    align-self: end;
+    max-width: 42rem;
+  }
+
+  .faq-lead p + p {
+    margin-top: 1rem;
+  }
+
+  .faq-promises-section {
+    padding-top: 0;
+  }
+
+  .promise-grid {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .promise-grid article {
+    padding: 1.5rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: white;
+  }
+
+  .promise-grid h3 {
+    color: var(--ink);
+    font-size: 1.05rem;
+  }
+
+  .promise-grid p {
+    margin-top: .55rem;
+    color: var(--ink-soft);
+    font-size: .9rem;
+    line-height: 1.6;
+  }
+
+  .faq-group-heading {
+    max-width: 27rem;
+  }
+
+  .faq-list {
+    border-top: 1px solid var(--line);
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .faq-item summary {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.35rem 0;
+    color: var(--ink);
+    cursor: pointer;
+    list-style: none;
+    font-weight: 780;
+    line-height: 1.4;
+  }
+
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-item summary i {
+    display: grid;
+    width: 2rem;
+    height: 2rem;
+    place-items: center;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    color: var(--teal-dark);
+    font-size: 1.25rem;
+    font-style: normal;
+    line-height: 1;
+    transition: transform .18s ease, background .18s ease;
+  }
+
+  .faq-item[open] summary i {
+    background: var(--teal-light);
+    transform: rotate(45deg);
+  }
+
+  .faq-item summary:hover span,
+  .faq-item summary:focus-visible span {
+    color: var(--teal-dark);
+  }
+
+  .faq-answer {
+    max-width: 48rem;
+    padding: 0 3.5rem 1.5rem 0;
+    color: var(--ink-soft);
+    line-height: 1.72;
+  }
+
+  .resource-links {
+    display: grid;
+    gap: .8rem;
+  }
+
+  .resource-links a {
+    display: grid;
+    gap: .25rem;
+    padding: 1.2rem 0;
+    border-bottom: 1px solid var(--line);
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .resource-links strong {
+    color: var(--ink);
+  }
+
+  .resource-links span {
+    color: var(--body);
+    font-size: .9rem;
+    line-height: 1.5;
+  }
+
+  .resource-links a:hover strong,
+  .resource-links a:focus-visible strong {
+    color: var(--teal-dark);
+  }
+
+  @media (min-width: 48rem) {
+    .faq-intro-grid {
+      grid-template-columns: 1.1fr .9fr;
+      align-items: end;
+    }
+
+    .promise-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .faq-group-grid,
+    .faq-resources {
+      grid-template-columns: .72fr 1.28fr;
+      align-items: start;
+      gap: clamp(3rem, 7vw, 6rem);
+    }
+
+    .faq-group-heading {
+      position: sticky;
+      top: 7rem;
+    }
+  }
+</style>
