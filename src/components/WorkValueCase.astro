@@ -63,35 +63,23 @@
 
       <div class="signal-grid">
         <article>
-          <span class="signal-icon">01</span>
-          <div>
-            <h3>Search visibility</h3>
-            <p>Which pages and search queries are gaining or losing visibility?</p>
-          </div>
+          <h3>Search visibility</h3>
+          <p>Which pages and search queries are gaining or losing visibility?</p>
         </article>
 
         <article>
-          <span class="signal-icon">02</span>
-          <div>
-            <h3>Visitor behavior</h3>
-            <p>How are people arriving, what are they viewing, and which actions are they taking?</p>
-          </div>
+          <h3>Visitor behavior</h3>
+          <p>How are people arriving, what are they viewing, and which actions are they taking?</p>
         </article>
 
         <article>
-          <span class="signal-icon">03</span>
-          <div>
-            <h3>Site health</h3>
-            <p>Are there technical, performance, domain, or usability issues that need attention?</p>
-          </div>
+          <h3>Site health</h3>
+          <p>Are there technical, performance, domain, or usability issues that need attention?</p>
         </article>
 
         <article>
-          <span class="signal-icon">04</span>
-          <div>
-            <h3>Next improvement</h3>
-            <p>What small content, SEO, CTA, or site update is most useful to make next?</p>
-          </div>
+          <h3>Next improvement</h3>
+          <p>What small content, SEO, CTA, or site update is most useful to make next?</p>
         </article>
       </div>
 
@@ -291,23 +279,20 @@
   }
 
   .signal-grid article {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 1rem;
-    padding: 1.3rem 1.5rem;
+    position: relative;
+    padding: 1.3rem 1.5rem 1.3rem 1.8rem;
     border-bottom: 1px solid rgba(255,255,255,.1);
   }
 
-  .signal-icon {
-    display: grid;
-    width: 2.15rem;
-    height: 2.15rem;
-    place-items: center;
-    border: 1px solid rgba(142,208,199,.5);
+  .signal-grid article::before {
+    position: absolute;
+    top: 1.65rem;
+    left: .8rem;
+    width: .38rem;
+    height: .38rem;
     border-radius: 50%;
-    color: #8ed0c7;
-    font-size: .65rem;
-    font-weight: 850;
+    background: #8ed0c7;
+    content: '';
   }
 
   .signal-grid h3 {
