@@ -186,6 +186,9 @@ import Layout from '../../layouts/Layout.astro';
         <p class="strategy-note">
           This is the reason Managed Growth includes both analysis and website
           work. Finding an opportunity only matters if someone can act on it.
+          Managed Growth clients also receive a written website report each
+          month so the findings, trends, priorities, and next recommendations
+          are clear without having to interpret the raw dashboards themselves.
         </p>
       </div>
     </div>
@@ -477,18 +480,17 @@ import Layout from '../../layouts/Layout.astro';
   @media (min-width: 48rem) {
     .strategy-hero-grid,
     .strategy-split {
-      grid-template-columns: .8fr 1.2fr;
-      gap: clamp(3rem, 8vw, 7rem);
+      grid-template-columns: .85fr 1.15fr;
       align-items: start;
     }
 
     .comparison-grid,
     .domain-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(2, 1fr);
     }
 
     .strategy-card-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(3, 1fr);
     }
   }
 </style>
