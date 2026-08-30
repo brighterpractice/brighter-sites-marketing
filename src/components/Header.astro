@@ -29,7 +29,12 @@ const path = Astro.url.pathname;
           </a>
         ))
       }
-      <a class="client-portal-nav-link" href={clientPortalUrl}>
+      <a
+        class="client-portal-nav-link"
+        href={clientPortalUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <img
           class="client-portal-nav-icon"
           src="/images/branding/client-portal-icon.svg"
@@ -75,7 +80,12 @@ const path = Astro.url.pathname;
             ))
           }
 
-          <a class="client-portal-nav-link client-portal-nav-link--mobile" href={clientPortalUrl}>
+          <a
+            class="client-portal-nav-link client-portal-nav-link--mobile"
+            href={clientPortalUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <img
               class="client-portal-nav-icon"
               src="/images/branding/client-portal-icon.svg"
