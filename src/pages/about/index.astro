@@ -30,12 +30,21 @@ import Layout from '../../layouts/Layout.astro';
 
   <section class="section founder-section">
     <div class="container founder-grid">
-      <div class="founder-visual" aria-label="Isaac Bright headshot placeholder">
-        <div class="founder-placeholder" aria-hidden="true">
-          <span>IB</span>
+      <aside class="founder-card" aria-label="Isaac Bright, founder of Brighter Sites">
+        <p class="founder-card-label">Founder</p>
+        <h2>Isaac Bright</h2>
+        <p class="founder-role">Founder · Designer · Developer</p>
+        <p class="founder-card-copy">
+          Building thoughtful, effective websites for therapists and counseling
+          practices—with the technical details handled carefully from the start.
+        </p>
+
+        <div class="founder-card-points" aria-label="Areas of focus">
+          <span>Web design & development</span>
+          <span>Security & performance</span>
+          <span>Long-term website support</span>
         </div>
-        <p>Founder · Designer · Developer</p>
-      </div>
+      </aside>
 
       <div class="founder-copy">
         <p class="eyebrow">Who you work with</p>
@@ -258,44 +267,77 @@ import Layout from '../../layouts/Layout.astro';
     padding-top: clamp(3rem, 6vw, 5rem);
   }
 
-  .founder-visual {
+  .founder-card {
     align-self: start;
-  }
-
-  .founder-placeholder {
-    display: grid;
-    aspect-ratio: 4 / 5;
-    width: min(100%, 25rem);
-    place-items: center;
     overflow: hidden;
-    border: 1px solid rgba(39,119,111,.22);
+    padding: clamp(1.8rem, 4vw, 2.7rem);
+    border: 1px solid rgba(39,119,111,.2);
     border-radius: var(--radius-lg);
     background:
-      radial-gradient(circle at 72% 22%, rgba(95,174,163,.28), transparent 23%),
+      radial-gradient(circle at 82% 14%, rgba(95,174,163,.24), transparent 24%),
       linear-gradient(145deg, #eef6f3, #f8f4ea 58%, #ffffff);
     box-shadow: var(--shadow-soft);
   }
 
-  .founder-placeholder span {
-    display: grid;
-    width: 7rem;
-    height: 7rem;
-    place-items: center;
-    border: 1px solid rgba(39,119,111,.25);
-    border-radius: 50%;
-    background: rgba(255,255,255,.72);
-    color: var(--teal-dark);
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 2.6rem;
+  .founder-card-label {
+    display: inline-flex;
+    margin: 0 0 1rem;
+    padding: .35rem .65rem;
+    border-radius: 999px;
+    background: var(--teal-dark);
+    color: white;
+    font-size: .68rem;
+    font-weight: 850;
+    letter-spacing: .1em;
+    text-transform: uppercase;
   }
 
-  .founder-visual > p {
-    margin-top: .9rem;
-    color: var(--ink-soft);
-    font-size: .76rem;
+  .founder-card h2 {
+    margin: 0;
+    color: var(--ink);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(2.1rem, 4vw, 3.2rem);
+    font-weight: 500;
+  }
+
+  .founder-role {
+    margin-top: .35rem;
+    color: var(--teal-dark);
+    font-size: .84rem;
     font-weight: 800;
-    letter-spacing: .08em;
-    text-transform: uppercase;
+  }
+
+  .founder-card-copy {
+    margin-top: 1.25rem;
+    color: var(--ink-soft);
+    line-height: 1.7;
+  }
+
+  .founder-card-points {
+    display: grid;
+    gap: .65rem;
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(39,119,111,.16);
+  }
+
+  .founder-card-points span {
+    position: relative;
+    padding-left: 1.2rem;
+    color: var(--ink-soft);
+    font-size: .82rem;
+    font-weight: 750;
+  }
+
+  .founder-card-points span::before {
+    position: absolute;
+    top: .48em;
+    left: 0;
+    width: .46rem;
+    height: .46rem;
+    border-radius: 50%;
+    background: var(--teal);
+    content: '';
   }
 
   .founder-copy h2,

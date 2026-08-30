@@ -37,6 +37,50 @@
   </div>
 </section>
 
+<section class="video-capability">
+  <div class="container video-panel">
+    <div>
+      <p class="eyebrow">Video introductions & media</p>
+      <h2>Let visitors hear from you before they ever schedule.</h2>
+      <p>
+        Brighter Sites can build responsive video sections for clinician introductions,
+        practice welcomes, educational content, or other media. The Evergreen demo
+        includes a live example of a YouTube video embedded directly into the site.
+      </p>
+    </div>
+
+    <div class="video-options">
+      <article>
+        <strong>YouTube Unlisted</strong>
+        <p>
+          An unlisted YouTube video can play on your website without appearing in
+          normal YouTube search results or on your channel’s public video list.
+          Anyone who obtains the direct video link can still watch or share it, so
+          unlisted is less discoverable—not truly private.
+        </p>
+      </article>
+
+      <article>
+        <strong>Website-only playback</strong>
+        <p>
+          If you need tighter control, Brighter Sites can use a video host that
+          supports domain-restricted embedding so playback can be limited to your
+          approved website instead of relying on an ordinary public or unlisted link.
+        </p>
+      </article>
+
+      <a
+        class="text-link"
+        href="https://evergreen.brightersites.app"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        See the embedded-video example on Evergreen →
+      </a>
+    </div>
+  </div>
+</section>
+
 <section class="managed-growth">
   <div class="container growth-grid">
     <div class="growth-copy">
@@ -111,6 +155,7 @@
 
 <style>
   .value-case,
+  .video-capability,
   .managed-growth,
   .human-layer {
     padding: clamp(4.5rem, 8vw, 7rem) 0;
@@ -127,6 +172,7 @@
   }
 
   .value-intro h2,
+  .video-panel h2,
   .growth-copy h2,
   .human-panel h2 {
     max-width: 16ch;
@@ -208,6 +254,58 @@
     border-radius: 50%;
     background: var(--teal);
     content: '';
+  }
+
+  .video-capability {
+    background: white;
+  }
+
+  .video-panel {
+    display: grid;
+    gap: clamp(2rem, 5vw, 4rem);
+    padding: clamp(2rem, 5vw, 4rem);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background:
+      radial-gradient(circle at 90% 12%, rgba(95,174,163,.16), transparent 28%),
+      linear-gradient(135deg, #fffdf8, #f5faf8);
+  }
+
+  .video-panel > div:first-child > p:not(.eyebrow) {
+    max-width: 42rem;
+    margin-top: 1.2rem;
+    color: var(--ink-soft);
+    line-height: 1.7;
+  }
+
+  .video-options {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .video-options article {
+    padding: 1.2rem 1.25rem;
+    border: 1px solid var(--line);
+    border-radius: 1rem;
+    background: rgba(255,255,255,.86);
+  }
+
+  .video-options strong {
+    display: block;
+    margin-bottom: .35rem;
+    color: var(--ink);
+  }
+
+  .video-options p {
+    margin: 0;
+    color: var(--ink-soft);
+    line-height: 1.65;
+  }
+
+  .video-options .text-link {
+    margin-top: .35rem;
+    color: var(--teal-dark);
+    font-weight: 800;
   }
 
   .managed-growth {
@@ -354,7 +452,8 @@
 
   @media (min-width: 58rem) {
     .value-case-grid,
-    .growth-grid {
+    .growth-grid,
+    .video-panel {
       grid-template-columns: .9fr 1.1fr;
       align-items: start;
     }

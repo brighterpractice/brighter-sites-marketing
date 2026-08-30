@@ -1,15 +1,7 @@
 ---
 import { clientPortalUrl } from '../data/site';
 
-const lastUpdated = new Intl.DateTimeFormat('en-US', {
-  timeZone: 'America/Denver',
-  month: 'short',
-  day: 'numeric',
-  year: 'numeric',
-  hour: 'numeric',
-  minute: '2-digit',
-  timeZoneName: 'short',
-}).format(new Date());
+const currentRelease = 'v1.0';
 ---
 
 <footer class="site-footer">
@@ -29,6 +21,8 @@ const lastUpdated = new Intl.DateTimeFormat('en-US', {
       <a href="/process/">Process</a>
       <a href="/contact/">Contact</a>
       <a href={clientPortalUrl}>Client Portal</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms/">Terms</a>
     </div>
   </div>
 
@@ -38,9 +32,9 @@ const lastUpdated = new Intl.DateTimeFormat('en-US', {
   </div>
 
   <div class="container brighter-sites-signature">
-    <span>Site last updated {lastUpdated}</span>
+    <span>Established August 2026 · Current Release {currentRelease}</span>
     <span>
-      Website built and managed by{" "}
+      Website built and managed by{' '}
       <a href="https://brightersites.app">Brighter Sites</a>
     </span>
   </div>

@@ -102,7 +102,8 @@
   transform: rotate(31deg) scale(.72);
 }
 
-/* Turn the old decorative footer bars into a believable compact services row. */
+/* Keep the services row graphic, but make each rounded pill contain its
+ * complete label so the text stays centered at every preview size. */
 .evergreen-footer-line {
   grid-template-columns: repeat(3,1fr);
   gap: .42rem;
@@ -110,27 +111,29 @@
 }
 
 .evergreen-footer-line span {
-  position: relative;
-  height: 2.05rem;
-  padding: .5rem .42rem .35rem;
-  border: 1px solid rgba(41,72,63,.08);
-  border-radius: .55rem;
-  background: rgba(255,255,255,.5);
-  color: #526f62;
-  font-size: .37rem;
-  font-weight: 800;
-  letter-spacing: .08em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 1.72rem;
+  padding: .38rem .32rem;
+  border: 1px solid rgba(41,72,63,.1);
+  border-radius: 999px;
+  background: rgba(255,255,255,.56);
+  color: #29483f;
+  font-family: Georgia, serif;
+  font-size: .43rem;
+  font-weight: 600;
+  line-height: 1.12;
   text-align: center;
 }
 
+.evergreen-footer-line span::before,
+.evergreen-footer-line span::after {
+  display: inline;
+}
+
 .evergreen-footer-line span::before {
-  display: block;
-  margin-bottom: .18rem;
-  color: #29483f;
-  font-family: Georgia, serif;
-  font-size: .48rem;
-  font-weight: 400;
-  letter-spacing: 0;
+  margin-right: .12rem;
 }
 
 .evergreen-footer-line span:nth-child(1)::before { content: 'Anxiety'; }
@@ -140,7 +143,7 @@
 .evergreen-footer-line span:nth-child(1)::after,
 .evergreen-footer-line span:nth-child(2)::after,
 .evergreen-footer-line span:nth-child(3)::after {
-  content: 'SUPPORT';
+  content: 'Support';
 }
 
 @media (max-width: 31rem) {
@@ -148,7 +151,14 @@
     border-radius: 1rem 2.6rem 1rem 1rem;
   }
 
+  .evergreen-footer-line {
+    gap: .3rem;
+    padding-inline: .72rem;
+  }
+
   .evergreen-footer-line span {
-    height: 1.85rem;
+    min-height: 1.62rem;
+    padding-inline: .24rem;
+    font-size: .39rem;
   }
 }
