@@ -29,7 +29,17 @@ const path = Astro.url.pathname;
           </a>
         ))
       }
-      <a href={clientPortalUrl}>Client Portal</a>
+      <a class="client-portal-nav-link" href={clientPortalUrl}>
+        <img
+          class="client-portal-nav-icon"
+          src="/images/branding/client-portal-icon.svg"
+          alt=""
+          width="96"
+          height="96"
+          aria-hidden="true"
+        />
+        <span>Client Portal</span>
+      </a>
     </nav>
 
     <a class="header-cta desktop-cta" href={primaryCta}>
@@ -65,7 +75,17 @@ const path = Astro.url.pathname;
             ))
           }
 
-          <a href={clientPortalUrl}>Client Portal</a>
+          <a class="client-portal-nav-link client-portal-nav-link--mobile" href={clientPortalUrl}>
+            <img
+              class="client-portal-nav-icon"
+              src="/images/branding/client-portal-icon.svg"
+              alt=""
+              width="96"
+              height="96"
+              aria-hidden="true"
+            />
+            <span>Client Portal</span>
+          </a>
 
           <a class="mobile-menu-cta" href={primaryCta}>
             Start a project
@@ -107,3 +127,30 @@ const path = Astro.url.pathname;
     }
   });
 </script>
+
+<style>
+  .client-portal-nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: .42rem;
+  }
+
+  .client-portal-nav-icon {
+    width: 1.45rem;
+    height: 1.45rem;
+    flex: 0 0 auto;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(16,43,50,.15);
+  }
+
+  .client-portal-nav-link--mobile {
+    width: fit-content;
+  }
+
+  @media (max-width: 47.99rem) {
+    .client-portal-nav-icon {
+      width: 1.7rem;
+      height: 1.7rem;
+    }
+  }
+</style>
