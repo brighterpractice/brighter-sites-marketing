@@ -2,10 +2,16 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
+
+const analyticsConfig = JSON.stringify({
+  collectorUrl: 'https://analytics.brightersites.app',
+  siteKey: 'bs_live_495e5683c0b08bdfb1c856aff92f9abcb2f2cd8ee0b09a24',
+  scriptVersion: '1.0.2',
+});
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-bs-analytics-page="404">
   <head>
     <meta charset="UTF-8" />
     <meta
@@ -49,5 +55,17 @@ import '../styles/global.css';
     </main>
 
     <Footer />
-  </body>
+
+  <script
+    is:inline
+    type="application/json"
+    data-bs-analytics-config
+    set:html={analyticsConfig}
+  ></script>
+  <script
+    is:inline
+    src="/brighter-analytics.js?v=1.0.2"
+    defer
+  ></script>
+</body>
 </html>
