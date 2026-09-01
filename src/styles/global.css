@@ -338,8 +338,13 @@ p {
   padding: 1rem .4rem 1.5rem;
 }
 
-.demo-content h3 {
+.demo-content .demo-heading {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--serif);
   font-size: clamp(1.55rem, 4vw, 2.45rem);
+  font-weight: 400;
+  line-height: 1.08;
 }
 
 .demo-content p {
@@ -439,6 +444,10 @@ p {
 
 .work-card .eyebrow {
   color: #9fd1c8;
+}
+
+.work-card .text-link {
+  color: #bce1db;
 }
 
 .work-card p {

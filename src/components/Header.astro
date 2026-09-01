@@ -106,37 +106,7 @@ const path = Astro.url.pathname;
   </div>
 </header>
 
-<script>
-  const mobileNav = document.querySelector<HTMLDetailsElement>('.mobile-nav-details');
-  const mobileMenuButton = mobileNav?.querySelector<HTMLElement>('.mobile-menu-button');
-
-  const closeMobileNav = () => {
-    if (!mobileNav?.open) return;
-    mobileNav.removeAttribute('open');
-    mobileMenuButton?.setAttribute('aria-label', 'Open navigation');
-  };
-
-  mobileNav?.addEventListener('toggle', () => {
-    mobileMenuButton?.setAttribute(
-      'aria-label',
-      mobileNav.open ? 'Close navigation' : 'Open navigation',
-    );
-  });
-
-  document.addEventListener('pointerdown', (event) => {
-    if (!mobileNav?.open) return;
-    if (event.target instanceof Node && !mobileNav.contains(event.target)) {
-      closeMobileNav();
-    }
-  });
-
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') {
-      closeMobileNav();
-      mobileMenuButton?.focus();
-    }
-  });
-</script>
+<script is:inline src="/scripts/mobile-nav.js"></script>
 
 <style>
   .client-portal-nav-link {
