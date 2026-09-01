@@ -116,6 +116,12 @@ for (const file of htmlFiles) {
 
 const indexable = [...pages.values()].filter((page) => !page.noindex);
 
+if (!pages.has('/404.html')) {
+  fail('Missing required 404.html page');
+} else if (!pages.get('/404.html').noindex) {
+  fail('/404.html: expected noindex robots directive');
+}
+
 for (const page of pages.values()) {
   const h1Count = (page.html.match(/<h1\b/gi) ?? []).length;
 

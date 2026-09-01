@@ -1,0 +1,53 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+    <title>Page Not Found | Brighter Sites</title>
+    <meta
+      name="description"
+      content="The page you requested could not be found."
+    />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#102b32" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="/images/branding/brighter-sites-favicon.png"
+    />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <Header />
+
+    <main id="main">
+      <section class="page-intro">
+        <div class="container">
+          <p class="eyebrow">404 · Page not found</p>
+          <h1>That page doesn’t seem to be here.</h1>
+
+          <p class="page-lead">
+            The address may have changed, or the page may no longer exist.
+          </p>
+
+          <p style="margin-top: 2rem;">
+            <a class="button" href="/">Return to Brighter Sites</a>
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <Footer />
+  </body>
+</html>

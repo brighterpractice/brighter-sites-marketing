@@ -10,7 +10,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "quality": "npm run build"
+    "quality": "npm run build && node scripts/quality-check.mjs"
   },
   "dependencies": {
     "astro": "^7.2.2"
