@@ -332,9 +332,50 @@ if (!fs.existsSync(analyticsPath)) {
     );
   }
 
-  if (/localStorage|document\.cookie/.test(analytics)) {
+  if (/document\.cookie/.test(analytics)) {
     fail(
-      'Analytics must not use localStorage or cookies.'
+      'Analytics must not use cookies.'
+    );
+  }
+
+  if (
+    !/bs_analytics_session_v2/.test(analytics) ||
+    !/bs_analytics_visitor_v2/.test(analytics)
+  ) {
+    fail(
+      'Analytics v2 storage keys are missing.'
+    );
+  }
+
+  if (
+    !/visitor_id/.test(analytics) ||
+    !/visitor_is_returning/.test(analytics)
+  ) {
+    fail(
+      'Analytics v2 visitor payload fields are missing.'
+    );
+  }
+
+  if (
+    !/VISITOR_LIFETIME_MS/.test(analytics) ||
+    !/180\s*\*\s*24\s*\*\s*60\s*\*\s*60\s*\*\s*1000/.test(
+      analytics
+    )
+  ) {
+    fail(
+      'Analytics v2 fixed 180-day visitor expiration is missing.'
+    );
+  }
+
+  if (!/crypto\.randomUUID\(\)/.test(analytics)) {
+    fail(
+      'Analytics identifiers must use crypto.randomUUID().'
+    );
+  }
+
+  if (/Math\.random\(/.test(analytics)) {
+    fail(
+      'Analytics must not use Math.random identifier fallbacks.'
     );
   }
 
