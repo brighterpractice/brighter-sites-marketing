@@ -55,7 +55,7 @@ The four public demonstration sites are also separate Cloudflare Pages projects 
 - Canonical URLs are generated against `https://brightersites.app`.
 - Security and cache response headers live in `public/_headers`.
 - `public/robots.txt` points crawlers to the production sitemap.
-- The marketing site currently does not load the planned Brighter Sites first-party analytics tracker. Do not add a production analytics site key until the analytics service, privacy language, and deployment are intentionally approved.
+- The marketing site uses the approved Brighter Sites first-party Website Intelligence analytics tracker. Production analytics configuration and privacy language should remain consistent with the deployed tracker.
 
 ## Release footer
 
