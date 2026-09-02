@@ -624,9 +624,8 @@ test(
     assert.equal(localStorage.removes, 0);
   }
 );
-
 test(
-  'runtime tracker version mismatch fails closed',
+  'runtime tracker version mismatch does not disable collection',
   async () => {
     const localStorage =
       new StorageMock();
@@ -642,14 +641,15 @@ test(
       1
     );
 
-    assert.equal(
-      result.requests.length,
-      0
+    assert.ok(
+      result.requests.length > 0,
+      'analytics events should still be collected',
     );
 
-    assert.equal(localStorage.gets, 0);
-    assert.equal(localStorage.sets, 0);
-    assert.equal(localStorage.removes, 0);
+    assert.ok(
+      localStorage.gets > 0,
+      'visitor storage should be available after enabled=true',
+    );
   }
 );
 

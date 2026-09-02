@@ -104,9 +104,7 @@
 
     if (
       !runtimeConfig ||
-      runtimeConfig.enabled !== true ||
-      runtimeConfig.trackerVersion !==
-        config.scriptVersion
+      runtimeConfig.enabled !== true
     ) {
       return;
     }

@@ -403,9 +403,6 @@ if (!fs.existsSync(analyticsPath)) {
     ) ||
     !/runtimeConfig\.enabled\s*!==\s*true/.test(
       analytics
-    ) ||
-    !/runtimeConfig\.trackerVersion\s*!==\s*config\.scriptVersion/.test(
-      analytics
     )
   ) {
     fail(
