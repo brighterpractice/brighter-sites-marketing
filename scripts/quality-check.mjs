@@ -397,6 +397,22 @@ if (!fs.existsSync(analyticsPath)) {
     );
   }
 
+  if (
+    !/\/api\/analytics\/config\?site_key=/.test(
+      analytics
+    ) ||
+    !/runtimeConfig\.enabled\s*!==\s*true/.test(
+      analytics
+    ) ||
+    !/runtimeConfig\.trackerVersion\s*!==\s*config\.scriptVersion/.test(
+      analytics
+    )
+  ) {
+    fail(
+      'Analytics runtime collection gate is missing or incomplete.'
+    );
+  }
+
   if (/window\.location\.search/.test(analytics)) {
     fail(
       'Analytics directly accesses the current page query string.'

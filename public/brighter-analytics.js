@@ -1,4 +1,4 @@
-(() => {
+(async () => {
   'use strict';
 
   try {
@@ -66,6 +66,53 @@
       }
     };
 
+    if (privacyDisabled()) return;
+
+    /*
+     * Collection is remotely controlled by the
+     * Analytics property. This check happens before
+     * visitor localStorage is read or written.
+     *
+     * Failure is deliberately closed: if runtime
+     * configuration cannot be verified, Analytics
+     * does not initialize.
+     */
+    const runtimeEndpoint =
+      config.collectorUrl.replace(/\/$/, '') +
+      '/api/analytics/config?site_key=' +
+      encodeURIComponent(config.siteKey);
+
+    let runtimeConfig;
+
+    try {
+      const response = await fetch(
+        runtimeEndpoint,
+        {
+          method: 'GET',
+          credentials: 'omit',
+          cache: 'no-store',
+          referrerPolicy: 'no-referrer',
+        }
+      );
+
+      if (!response.ok) return;
+
+      runtimeConfig = await response.json();
+    } catch {
+      return;
+    }
+
+    if (
+      !runtimeConfig ||
+      runtimeConfig.enabled !== true ||
+      runtimeConfig.trackerVersion !==
+        config.scriptVersion
+    ) {
+      return;
+    }
+
+    // Privacy state may have changed while the
+    // runtime request was in flight.
     if (privacyDisabled()) return;
 
     const uuid = () => {

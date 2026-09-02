@@ -72,13 +72,17 @@ class StorageMock {
   }
 }
 
-function runTracker({
+async function runTracker({
   localStorage = new StorageMock(),
   sessionStorage = new StorageMock(),
   gpc = false,
   dnt = '',
+  runtimeEnabled = true,
+  runtimeFailure = false,
+  runtimeTrackerVersion = '2.1.0',
 } = {}) {
   const requests = [];
+  const configRequests = [];
   let uuidCounter = 0;
 
   const config = {
@@ -86,7 +90,7 @@ function runTracker({
       'https://analytics.brightersites.app',
     siteKey:
       'bs_live_' + 'a'.repeat(48),
-    scriptVersion: '2.0.0',
+    scriptVersion: '2.1.0',
   };
 
   class Element {}
@@ -166,7 +170,39 @@ function runTracker({
       },
     },
 
-    fetch(url, options) {
+    fetch(url, options = {}) {
+      if (
+        String(url).includes(
+          '/api/analytics/config?site_key='
+        )
+      ) {
+        configRequests.push({
+          url,
+          options,
+        });
+
+        if (runtimeFailure) {
+          return Promise.reject(
+            new Error(
+              'runtime config unavailable'
+            )
+          );
+        }
+
+        return Promise.resolve({
+          ok: true,
+          status: 200,
+
+          json() {
+            return Promise.resolve({
+              enabled: runtimeEnabled,
+              trackerVersion:
+                runtimeTrackerVersion,
+            });
+          },
+        });
+      }
+
       requests.push({
         url,
         options,
@@ -174,6 +210,7 @@ function runTracker({
       });
 
       return Promise.resolve({
+        ok: true,
         status: 204,
       });
     },
@@ -184,8 +221,13 @@ function runTracker({
     vm.createContext(context)
   );
 
+  await new Promise((resolve) =>
+    setImmediate(resolve)
+  );
+
   return {
     requests,
+    configRequests,
     localStorage,
     sessionStorage,
   };
@@ -193,11 +235,11 @@ function runTracker({
 
 test(
   'first session creates a fixed-lifetime new visitor',
-  () => {
+  async () => {
     const localStorage =
       new StorageMock();
 
-    const result = runTracker({
+    const result = await runTracker({
       localStorage,
     });
 
@@ -235,11 +277,11 @@ test(
 
 test(
   'a later session on the same origin is returning',
-  () => {
+  async () => {
     const localStorage =
       new StorageMock();
 
-    const first = runTracker({
+    const first = await runTracker({
       localStorage,
       sessionStorage:
         new StorageMock(),
@@ -248,7 +290,7 @@ test(
     const visitorId =
       first.requests[0].payload.visitor_id;
 
-    const second = runTracker({
+    const second = await runTracker({
       localStorage,
       sessionStorage:
         new StorageMock(),
@@ -269,14 +311,14 @@ test(
 
 test(
   'later page loads in the first session stay new',
-  () => {
+  async () => {
     const localStorage =
       new StorageMock();
 
     const sessionStorage =
       new StorageMock();
 
-    const first = runTracker({
+    const first = await runTracker({
       localStorage,
       sessionStorage,
     });
@@ -287,7 +329,7 @@ test(
       false
     );
 
-    const second = runTracker({
+    const second = await runTracker({
       localStorage,
       sessionStorage,
     });
@@ -307,11 +349,11 @@ test(
 
 test(
   'GPC prevents visitor storage access and collection',
-  () => {
+  async () => {
     const localStorage =
       new StorageMock();
 
-    const result = runTracker({
+    const result = await runTracker({
       localStorage,
       gpc: true,
     });
@@ -329,14 +371,14 @@ test(
 
 test(
   'session analytics continue if localStorage is unavailable',
-  () => {
+  async () => {
     const localStorage =
       new StorageMock(
         {},
         { throwOnGet: true }
       );
 
-    const result = runTracker({
+    const result = await runTracker({
       localStorage,
     });
 
@@ -365,7 +407,7 @@ test(
 
 test(
   'expired visitor storage creates a new visitor',
-  () => {
+  async () => {
     const expiredId = makeUuid(99);
 
     const localStorage =
@@ -379,7 +421,7 @@ test(
           }),
       });
 
-    const result = runTracker({
+    const result = await runTracker({
       localStorage,
     });
 
@@ -405,11 +447,11 @@ test(
 
 test(
   'Do Not Track prevents visitor storage access and collection',
-  () => {
+  async () => {
     const localStorage =
       new StorageMock();
 
-    const result = runTracker({
+    const result = await runTracker({
       localStorage,
       dnt: '1',
     });
@@ -427,7 +469,7 @@ test(
 
 test(
   'existing tab opt-out prevents visitor storage access and collection',
-  () => {
+  async () => {
     const localStorage =
       new StorageMock();
 
@@ -436,7 +478,7 @@ test(
         bs_analytics_opt_out_v1: '1',
       });
 
-    const result = runTracker({
+    const result = await runTracker({
       localStorage,
       sessionStorage,
     });
@@ -454,11 +496,11 @@ test(
 
 test(
   'returning activity does not extend visitor expiration',
-  () => {
+  async () => {
     const localStorage =
       new StorageMock();
 
-    const first = runTracker({
+    const first = await runTracker({
       localStorage,
       sessionStorage:
         new StorageMock(),
@@ -480,7 +522,7 @@ test(
       1
     );
 
-    const second = runTracker({
+    const second = await runTracker({
       localStorage,
       sessionStorage:
         new StorageMock(),
@@ -523,5 +565,118 @@ test(
       1,
       'Returning activity must not rewrite or extend the visitor record'
     );
+  }
+);
+
+
+test(
+  'runtime disabled prevents storage access and collection',
+  async () => {
+    const localStorage =
+      new StorageMock();
+
+    const result =
+      await runTracker({
+        localStorage,
+        runtimeEnabled: false,
+      });
+
+    assert.equal(
+      result.configRequests.length,
+      1
+    );
+
+    assert.equal(
+      result.requests.length,
+      0
+    );
+
+    assert.equal(localStorage.gets, 0);
+    assert.equal(localStorage.sets, 0);
+    assert.equal(localStorage.removes, 0);
+  }
+);
+
+test(
+  'runtime config failure fails closed before storage access',
+  async () => {
+    const localStorage =
+      new StorageMock();
+
+    const result =
+      await runTracker({
+        localStorage,
+        runtimeFailure: true,
+      });
+
+    assert.equal(
+      result.configRequests.length,
+      1
+    );
+
+    assert.equal(
+      result.requests.length,
+      0
+    );
+
+    assert.equal(localStorage.gets, 0);
+    assert.equal(localStorage.sets, 0);
+    assert.equal(localStorage.removes, 0);
+  }
+);
+
+test(
+  'runtime tracker version mismatch fails closed',
+  async () => {
+    const localStorage =
+      new StorageMock();
+
+    const result =
+      await runTracker({
+        localStorage,
+        runtimeTrackerVersion: '9.9.9',
+      });
+
+    assert.equal(
+      result.configRequests.length,
+      1
+    );
+
+    assert.equal(
+      result.requests.length,
+      0
+    );
+
+    assert.equal(localStorage.gets, 0);
+    assert.equal(localStorage.sets, 0);
+    assert.equal(localStorage.removes, 0);
+  }
+);
+
+test(
+  'privacy signal prevents even the runtime lookup',
+  async () => {
+    const localStorage =
+      new StorageMock();
+
+    const result =
+      await runTracker({
+        localStorage,
+        gpc: true,
+      });
+
+    assert.equal(
+      result.configRequests.length,
+      0
+    );
+
+    assert.equal(
+      result.requests.length,
+      0
+    );
+
+    assert.equal(localStorage.gets, 0);
+    assert.equal(localStorage.sets, 0);
+    assert.equal(localStorage.removes, 0);
   }
 );
