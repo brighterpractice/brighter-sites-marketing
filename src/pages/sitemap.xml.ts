@@ -8,6 +8,7 @@ const pages = [
   '/privacy/',
   '/process/',
   '/services/',
+  '/therapist-websites/',
   '/terms/',
   '/website-strategy/',
   '/work/',
