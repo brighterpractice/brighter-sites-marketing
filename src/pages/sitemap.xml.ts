@@ -10,6 +10,7 @@ const pages = [
   '/services/',
   '/therapist-websites/',
   '/coaching-websites/',
+  '/wellness-practitioner-websites/',
   '/terms/',
   '/website-strategy/',
   '/work/',
