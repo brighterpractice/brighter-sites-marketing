@@ -9,6 +9,7 @@ const pages = [
   '/process/',
   '/services/',
   '/therapist-websites/',
+  '/coaching-websites/',
   '/terms/',
   '/website-strategy/',
   '/work/',
