@@ -4,6 +4,16 @@ import WorkValueCase from '../../components/WorkValueCase.astro';
 
 const demos = [
   {
+    name: 'Signal & Structure Coaching',
+    scope: 'Specialty custom coaching site',
+    pages: '11 primary pages',
+    description:
+      'An energetic ADHD and executive-function coaching website built around a dark navigation rail, bright signal accents, modular layouts, and a systems-focused brand.',
+    tags: ['Energetic', 'Structured', 'Modern'],
+    href: 'https://signal-structure.brightersites.app',
+    preview: 'signal',
+  },
+  {
     name: 'Evergreen Counseling Collective',
     scope: 'Focused custom practice site',
     pages: '7 primary pages',
@@ -48,18 +58,19 @@ const demos = [
 
 <Layout
   title="Our Work | Brighter Sites"
-  description="Explore four live therapy website demos and see how Brighter Sites combines custom design with ongoing website management and analytics."
+  description="Explore five live therapy and coaching website demos and see how Brighter Sites combines custom design with ongoing website management and analytics."
 >
   <section class="page-intro">
     <div class="container">
       <p class="eyebrow">Our work</p>
       <h1>Different practices deserve different websites.</h1>
       <p class="page-lead">
-        Explore four fully navigable, custom-built demonstration websites. The
-        examples range from a focused seven-page site to a comprehensive
-        20-page site. Page count changes the scope and content depth—not the
-        level of customization. Each keeps its own visual direction, practice
-        personality, content voice, and client experience.
+        Explore five fully navigable, custom-built demonstration websites for
+        therapy and coaching practices. The examples range from a focused
+        seven-page site to a comprehensive 20-page site. Page count changes the
+        scope and content depth—not the level of customization. Each keeps its
+        own visual direction, practice personality, content voice, and client
+        experience.
       </p>
       <p class="scope-note">
         Every example is custom designed and built. Page counts refer to primary
@@ -113,6 +124,35 @@ const demos = [
                   <span></span><span></span><span></span>
                   <i></i>
                 </div>
+
+                {demo.preview === 'signal' && (
+                  <div class="site-mini signal-mini">
+                    <div class="signal-shell">
+                      <div class="signal-rail">
+                        <div class="signal-brand">
+                          SIGNAL &amp;<br />STRUCTURE
+                          <small>COACHING</small>
+                        </div>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <em>DISCOVERY CALL</em>
+                      </div>
+
+                      <div class="signal-copy">
+                        <small>ADHD &amp; EXECUTIVE FUNCTION COACHING</small>
+                        <strong>Build systems that work with your brain.</strong>
+                        <p>Practical structure for planning, focus, and follow-through.</p>
+                        <b>BOOK A DISCOVERY CALL</b>
+                        <div class="signal-blocks">
+                          <span></span>
+                          <span></span>
+                          <span></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
 
                 {demo.preview === 'evergreen' && (
                   <div class="site-mini evergreen-mini">
@@ -420,6 +460,139 @@ const demos = [
     font-size: .48rem;
     font-style: normal;
     font-weight: 700;
+  }
+
+  /* Signal & Structure: energetic, modular, systems-focused. */
+  .portfolio-preview--signal {
+    background: linear-gradient(135deg, #c8f44d, #4657f2);
+  }
+
+  .signal-mini {
+    background: #f7f7f2;
+    color: #151a21;
+  }
+
+  .signal-shell {
+    display: grid;
+    grid-template-columns: .72fr 1.6fr;
+    min-height: 17rem;
+  }
+
+  .signal-rail {
+    display: flex;
+    flex-direction: column;
+    gap: .55rem;
+    padding: .9rem .65rem;
+    background: #151a21;
+    color: #f7f7f2;
+  }
+
+  .signal-brand {
+    margin-bottom: .55rem;
+    font-size: .55rem;
+    font-weight: 900;
+    line-height: 1.05;
+  }
+
+  .signal-brand small {
+    display: block;
+    margin-top: .3rem;
+    color: #c8f44d;
+    font-size: .3rem;
+    letter-spacing: .15em;
+  }
+
+  .signal-rail > span {
+    display: block;
+    height: .18rem;
+    background: rgba(247,247,242,.22);
+  }
+
+  .signal-rail > span:nth-of-type(2) {
+    width: 78%;
+  }
+
+  .signal-rail > span:nth-of-type(3) {
+    width: 62%;
+  }
+
+  .signal-rail em {
+    margin-top: auto;
+    padding: .45rem .3rem;
+    background: #c8f44d;
+    color: #151a21;
+    font-size: .28rem;
+    font-style: normal;
+    font-weight: 900;
+    text-align: center;
+  }
+
+  .signal-copy {
+    position: relative;
+    overflow: hidden;
+    padding: 1.2rem 1rem;
+    background:
+      linear-gradient(rgba(70,87,242,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(70,87,242,.07) 1px, transparent 1px),
+      #f7f7f2;
+    background-size: 1rem 1rem;
+  }
+
+  .signal-copy > small {
+    display: block;
+    color: #526800;
+    font-size: .34rem;
+    font-weight: 900;
+    letter-spacing: .12em;
+  }
+
+  .signal-copy > strong {
+    display: block;
+    max-width: 12rem;
+    margin-top: .7rem;
+    font-family: Arial, sans-serif;
+    font-size: clamp(1.2rem, 3.1vw, 2.05rem);
+    font-weight: 850;
+    line-height: .94;
+    letter-spacing: -.055em;
+  }
+
+  .signal-copy > p {
+    max-width: 12rem;
+    margin: .7rem 0;
+    color: #414955;
+    font-size: .52rem;
+    line-height: 1.45;
+  }
+
+  .signal-copy > b {
+    display: inline-block;
+    padding: .42rem .55rem;
+    background: #c8f44d;
+    font-size: .3rem;
+    font-weight: 900;
+  }
+
+  .signal-blocks {
+    position: absolute;
+    right: .8rem;
+    bottom: .8rem;
+    display: flex;
+    gap: .25rem;
+    align-items: end;
+  }
+
+  .signal-blocks span {
+    display: block;
+    width: .65rem;
+    background: #4657f2;
+  }
+
+  .signal-blocks span:nth-child(1) { height: 1.2rem; }
+  .signal-blocks span:nth-child(2) { height: 1.8rem; }
+  .signal-blocks span:nth-child(3) {
+    height: 2.5rem;
+    background: #151a21;
   }
 
   /* Evergreen: organic, soft, grounded. */
