@@ -1,7 +1,7 @@
 export const site = {
   name: 'Brighter Sites',
   description:
-    'Professional websites designed and built specifically for therapists and counseling practices.',
+    'Professional websites designed and built for therapists, coaches, and wellness professionals.',
 };
 
 export const navigation = [
