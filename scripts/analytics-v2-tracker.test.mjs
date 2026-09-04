@@ -14,6 +14,9 @@ const source = fs.readFileSync(
 const VISITOR_KEY =
   'bs_analytics_visitor_v2';
 
+const INTERNAL_OPTOUT_KEY =
+  'bs_analytics_internal_opt_out_v1';
+
 const VISITOR_LIFETIME_MS =
   180 * 24 * 60 * 60 * 1000;
 
@@ -79,7 +82,7 @@ async function runTracker({
   dnt = '',
   runtimeEnabled = true,
   runtimeFailure = false,
-  runtimeTrackerVersion = '2.1.0',
+  runtimeTrackerVersion = '2.1.1',
 } = {}) {
   const requests = [];
   const configRequests = [];
@@ -90,7 +93,7 @@ async function runTracker({
       'https://analytics.brightersites.app',
     siteKey:
       'bs_live_' + 'a'.repeat(48),
-    scriptVersion: '2.1.0',
+    scriptVersion: '2.1.1',
   };
 
   class Element {}
@@ -491,6 +494,59 @@ test(
     assert.equal(localStorage.gets, 0);
     assert.equal(localStorage.sets, 0);
     assert.equal(localStorage.removes, 0);
+  }
+);
+
+test(
+  'persistent internal opt-out survives new sessions and prevents collection',
+  async () => {
+    const localStorage =
+      new StorageMock({
+        [INTERNAL_OPTOUT_KEY]: '1',
+      });
+
+    const first = await runTracker({
+      localStorage,
+      sessionStorage:
+        new StorageMock(),
+    });
+
+    const second = await runTracker({
+      localStorage,
+      sessionStorage:
+        new StorageMock(),
+    });
+
+    assert.equal(
+      first.configRequests.length,
+      1
+    );
+
+    assert.equal(
+      second.configRequests.length,
+      1
+    );
+
+    assert.equal(
+      first.requests.length,
+      0
+    );
+
+    assert.equal(
+      second.requests.length,
+      0
+    );
+
+    assert.equal(
+      localStorage.sets,
+      0,
+      'internal exclusion must not create visitor state'
+    );
+
+    assert.equal(
+      localStorage.removes,
+      0
+    );
   }
 );
 

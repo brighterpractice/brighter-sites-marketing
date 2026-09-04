@@ -32,6 +32,14 @@
     // already opted-out tab remains opted out after v2 deploys.
     const OPTOUT_KEY = 'bs_analytics_opt_out_v1';
 
+    // Persistent operator/internal-traffic exclusion.
+    //
+    // This is intentionally separate from the visitor identifier.
+    // It is origin-scoped browser state and is never sent to the
+    // Analytics collector.
+    const INTERNAL_OPTOUT_KEY =
+      'bs_analytics_internal_opt_out_v1';
+
     const INACTIVITY_MS = 30 * 60 * 1000;
     const ABSOLUTE_MS = 24 * 60 * 60 * 1000;
     const VISITOR_LIFETIME_MS =
@@ -65,6 +73,24 @@
         return true;
       }
     };
+
+    const internalTrafficDisabled = () => {
+      try {
+        return (
+          localStorage.getItem(
+            INTERNAL_OPTOUT_KEY
+          ) === '1'
+        );
+      } catch {
+        // If persistent storage is unavailable, normal
+        // privacy-safe session analytics may continue.
+        return false;
+      }
+    };
+
+    const trackingDisabled = () =>
+      privacyDisabled() ||
+      internalTrafficDisabled();
 
     if (privacyDisabled()) return;
 
@@ -109,9 +135,14 @@
       return;
     }
 
-    // Privacy state may have changed while the
-    // runtime request was in flight.
-    if (privacyDisabled()) return;
+    // Privacy or internal-traffic state may have changed
+    // while the runtime request was in flight.
+    //
+    // The persistent internal flag is checked only after
+    // runtime collection has been confirmed enabled so a
+    // disabled Analytics property still performs no local
+    // storage access.
+    if (trackingDisabled()) return;
 
     const uuid = () => {
       try {
@@ -130,7 +161,7 @@
     const createVisitor = () => {
       // This check must happen before any visitor
       // localStorage write.
-      if (privacyDisabled()) return null;
+      if (trackingDisabled()) return null;
 
       const id = uuid();
 
@@ -162,7 +193,7 @@
     const readOrCreateVisitor = () => {
       // This check must happen before any visitor
       // localStorage read.
-      if (privacyDisabled()) return null;
+      if (trackingDisabled()) return null;
 
       let stored;
 
@@ -416,7 +447,7 @@
     };
 
     const send = (eventName, extra = {}) => {
-      if (privacyDisabled()) return;
+      if (trackingDisabled()) return;
 
       const session = readSession();
       const eventId = uuid();
@@ -579,7 +610,7 @@
       'click',
       (event) => {
         try {
-          if (privacyDisabled()) return;
+          if (trackingDisabled()) return;
 
           const target = event.target;
 

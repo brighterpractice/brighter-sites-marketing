@@ -348,6 +348,19 @@ if (!fs.existsSync(analyticsPath)) {
   }
 
   if (
+    !/bs_analytics_internal_opt_out_v1/.test(
+      analytics
+    ) ||
+    !/internalTrafficDisabled/.test(
+      analytics
+    )
+  ) {
+    fail(
+      'Persistent internal-traffic exclusion is missing.'
+    );
+  }
+
+  if (
     !/visitor_id/.test(analytics) ||
     !/visitor_is_returning/.test(analytics)
   ) {
