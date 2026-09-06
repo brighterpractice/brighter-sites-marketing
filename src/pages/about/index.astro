@@ -15,15 +15,28 @@ import Layout from '../../layouts/Layout.astro';
 
       <div class="about-lead">
         <p>
-          Brighter Sites began when my wife decided to open her own counseling
-          practice. I started researching what her website would need to do well,
-          then built it from the ground up around the practice she was actually
-          creating—not around a generic therapy template.
+          Brighter Sites grew out of a real need. While helping my wife launch
+          her counseling practice, Bright Hope Therapy, I saw firsthand how
+          difficult and expensive it can be for a small practice to get a
+          professional website built.
         </p>
         <p>
-          That project made one thing very clear: a good practice website is much
-          more than a collection of attractive pages.
+          That experience helped shape Brighter Sites around what small practices
+          actually need: a polished website, clear information for prospective
+          clients, mobile-friendly design, and straightforward ongoing support.
         </p>
+
+        <aside class="live-site-proof" aria-label="Bright Hope Therapy live website">
+          <span>Live Brighter Sites website</span>
+          <strong>Bright Hope Therapy</strong>
+          <a
+            href="https://brighthopetherapyllc.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Visit brighthopetherapyllc.com →
+          </a>
+        </aside>
       </div>
     </div>
   </section>
@@ -281,6 +294,41 @@ import Layout from '../../layouts/Layout.astro';
   .founder-copy > p + p,
   .about-copy p + p {
     margin-top: 1rem;
+  }
+
+  .live-site-proof {
+    display: grid;
+    gap: .25rem;
+    margin-top: 1.5rem;
+    padding: 1.15rem 1.25rem;
+    border: 1px solid rgba(39,119,111,.22);
+    border-radius: var(--radius);
+    background: var(--teal-light);
+  }
+
+  .live-site-proof span {
+    color: var(--teal-dark);
+    font-size: .68rem;
+    font-weight: 850;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+
+  .live-site-proof strong {
+    color: var(--ink);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.35rem;
+    font-weight: 500;
+  }
+
+  .live-site-proof a {
+    width: fit-content;
+    margin-top: .35rem;
+    color: var(--teal-dark);
+    font-size: .88rem;
+    font-weight: 800;
+    text-decoration-thickness: 1px;
+    text-underline-offset: .2em;
   }
 
   .founder-section {
