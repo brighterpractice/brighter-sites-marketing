@@ -48,7 +48,8 @@ The client portal is a separate application at:
 
 `https://portal.brightersites.app/portal`
 
-The four public demonstration sites are also separate Cloudflare Pages projects and are linked from `/work/`.
+The public example-sites page at `/work/` links to the Bright Hope Therapy live
+site and five separate demonstration sites hosted as Cloudflare Pages projects.
 
 ## Security and indexing
 
