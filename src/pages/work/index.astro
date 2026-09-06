@@ -2,6 +2,19 @@
 import Layout from '../../layouts/Layout.astro';
 import WorkValueCase from '../../components/WorkValueCase.astro';
 
+const liveSites = [
+  {
+    name: 'Bright Hope Therapy',
+    location: 'Meridian, Idaho',
+    description:
+      'A warm, professional counseling website created for an independent therapy practice in Meridian, Idaho.',
+    details:
+      'Designed with a mobile-first experience, clear service navigation, local search visibility, and an easy path for prospective clients to learn about the practice.',
+    tags: ['Mobile-first', 'Local search', 'Client-friendly'],
+    href: 'https://brighthopetherapyllc.com',
+  },
+];
+
 const demos = [
   {
     name: 'Signal & Structure Coaching',
@@ -57,44 +70,134 @@ const demos = [
 ---
 
 <Layout
-  title="Our Work | Brighter Sites"
-  description="Explore five live therapy and coaching website demos and see how Brighter Sites combines custom design with ongoing website management and analytics."
+  title="Example Sites | Brighter Sites"
+  description="Visit a live Brighter Sites client website and explore five custom therapy and coaching website design examples."
 >
   <section class="page-intro">
     <div class="container">
-      <p class="eyebrow">Our work</p>
+      <p class="eyebrow">Example sites</p>
       <h1>Different practices deserve different websites.</h1>
       <p class="page-lead">
-        Explore five fully navigable, custom-built demonstration websites for
-        therapy and coaching practices. The examples range from a focused
-        seven-page site to a comprehensive 20-page site. Page count changes the
-        scope and content depth—not the level of customization. Each keeps its
-        own visual direction, practice personality, content voice, and client
-        experience.
+        Start with a website built for a real counseling practice, then explore
+        five fully navigable design demonstrations for therapy and coaching
+        practices. Each site has its own visual direction, practice personality,
+        content voice, and client experience.
       </p>
       <p class="scope-note">
-        Every example is custom designed and built. Page counts refer to primary
-        content pages; privacy, terms, and other utility pages are not included.
+        Live client sites are clearly identified. The demonstration sites are
+        complete, custom-built examples—not paid client projects.
       </p>
     </div>
   </section>
 
-  <section class="section">
-    <div class="container demo-list">
+  <section class="section live-sites-section">
+    <div class="container">
+      <div class="collection-heading">
+        <p class="eyebrow">Live client sites</p>
+        <h2>Built for a real practice and serving real visitors.</h2>
+        <p>
+          These websites are launched, active, and supporting the day-to-day
+          work of independent practices.
+        </p>
+      </div>
+
       {
-        demos.map((demo, index) => (
+        liveSites.map((liveSite) => (
+          <article class="portfolio-feature portfolio-feature--live">
+            <div class="portfolio-copy">
+              <span class="live-site-badge">Live site</span>
+
+              <div class="scope-row" aria-label={`Site type: Live client website, ${liveSite.location}`}>
+                <span class="scope-badge">Live client website</span>
+                <span class="scope-pages">{liveSite.location}</span>
+              </div>
+
+              <h3 class="portfolio-title">{liveSite.name}</h3>
+
+              <p>{liveSite.description}</p>
+              <p>{liveSite.details}</p>
+
+              <div class="tag-row">
+                {liveSite.tags.map((tag) => <span>{tag}</span>)}
+              </div>
+
+              <a
+                class="button"
+                href={liveSite.href}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Visit live site →
+              </a>
+            </div>
+
+            <a
+              class="portfolio-preview portfolio-preview--bright-hope"
+              href={liveSite.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Visit ${liveSite.name} live website`}
+            >
+              <div class="preview-window" aria-hidden="true">
+                <div class="preview-top">
+                  <span></span><span></span><span></span>
+                  <i></i>
+                </div>
+
+                <div class="site-mini bright-hope-mini">
+                  <div class="mini-nav bright-hope-nav">
+                    <div class="bright-hope-brand">
+                      <span class="bright-hope-mark"></span>
+                      <b>Bright Hope <small>THERAPY</small></b>
+                    </div>
+                    <div class="mini-links"><span></span><span></span><span></span></div>
+                  </div>
+                  <div class="bright-hope-hero">
+                    <div class="bright-hope-copy">
+                      <small>MERIDIAN + STATEWIDE IDAHO TELEHEALTH</small>
+                      <strong>Compassionate support for the parts of life that feel difficult to carry alone.</strong>
+                      <p>Individual counseling for adults, in person and by telehealth.</p>
+                      <em>Request appointment</em>
+                    </div>
+                    <div class="bright-hope-portrait">
+                      <span class="portrait-head"></span>
+                      <span class="portrait-body"></span>
+                    </div>
+                  </div>
+                  <div class="bright-hope-status">CURRENTLY WAITLISTING NEW CLIENTS</div>
+                </div>
+              </div>
+            </a>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="section demo-sites-section">
+    <div class="container">
+      <div class="collection-heading">
+        <p class="eyebrow">Design examples</p>
+        <h2>Five complete demos. Five different directions.</h2>
+        <p>
+          Page counts show the relative scope and content depth of each example;
+          privacy, terms, and other utility pages are not included.
+        </p>
+      </div>
+
+      <div class="demo-list">
+      {
+        demos.map((demo) => (
           <article class="portfolio-feature">
             <div class="portfolio-copy">
-              <p class="eyebrow">
-                {index === 0 ? 'Featured demo' : 'Live demo'}
-              </p>
+              <p class="eyebrow">Demo design</p>
 
               <div class="scope-row" aria-label={`Site scope: ${demo.scope}, ${demo.pages}`}>
                 <span class="scope-badge">{demo.scope}</span>
                 <span class="scope-pages">{demo.pages}</span>
               </div>
 
-              <h2>{demo.name}</h2>
+              <h3 class="portfolio-title">{demo.name}</h3>
 
               <p>{demo.description}</p>
 
@@ -108,7 +211,7 @@ const demos = [
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Explore live demo →
+                Explore demo site →
               </a>
             </div>
 
@@ -117,7 +220,7 @@ const demos = [
               href={demo.href}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={`Explore ${demo.name} live demo`}
+              aria-label={`Explore ${demo.name} demo website`}
             >
               <div class="preview-window" aria-hidden="true">
                 <div class="preview-top">
@@ -252,6 +355,7 @@ const demos = [
           </article>
         ))
       }
+      </div>
     </div>
   </section>
 
@@ -264,6 +368,25 @@ const demos = [
     margin-top: 1rem;
     color: var(--body);
     font-size: .86rem;
+  }
+
+  .collection-heading {
+    max-width: 47rem;
+    margin-bottom: clamp(1.75rem, 4vw, 3rem);
+  }
+
+  .collection-heading h2 {
+    max-width: 22ch;
+  }
+
+  .collection-heading > p:last-child {
+    max-width: 42rem;
+    margin-top: 1rem;
+    color: var(--ink-soft);
+  }
+
+  .demo-sites-section {
+    background: var(--cream);
   }
 
   .demo-list {
@@ -280,14 +403,23 @@ const demos = [
     box-shadow: var(--shadow-soft);
   }
 
+  .portfolio-feature--live {
+    border-color: rgba(39,119,111,.42);
+    box-shadow: 0 24px 60px rgba(16,43,50,.12);
+  }
+
   .portfolio-copy {
     padding: clamp(2rem, 5vw, 4rem);
     color: var(--body);
   }
 
-  .portfolio-copy h2 {
+  .portfolio-title {
     margin-top: .85rem;
     color: var(--ink);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(2rem, 4vw, 3.15rem);
+    font-weight: 500;
+    line-height: 1.06;
   }
 
   .portfolio-copy > p:not(.eyebrow) {
@@ -298,6 +430,29 @@ const demos = [
 
   .portfolio-copy .eyebrow {
     color: var(--teal-dark);
+  }
+
+  .live-site-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    padding: .42rem .72rem;
+    border-radius: 999px;
+    background: var(--teal-dark);
+    color: white;
+    font-size: .68rem;
+    font-weight: 850;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+
+  .live-site-badge::before {
+    width: .48rem;
+    height: .48rem;
+    border-radius: 50%;
+    background: #aee7bf;
+    box-shadow: 0 0 0 .22rem rgba(174,231,191,.18);
+    content: '';
   }
 
   .scope-row {
@@ -452,7 +607,8 @@ const demos = [
   .mini-copy em,
   .align-copy em,
   .common-copy em,
-  .horizon-copy em {
+  .horizon-copy em,
+  .bright-hope-copy em {
     display: inline-block;
     margin-top: .8rem;
     padding: .42rem .7rem;
@@ -460,6 +616,161 @@ const demos = [
     font-size: .48rem;
     font-style: normal;
     font-weight: 700;
+  }
+
+  /* Bright Hope Therapy: live counseling-practice website. */
+  .portfolio-preview--bright-hope {
+    background:
+      radial-gradient(circle at 85% 10%, rgba(255,255,255,.62), transparent 28%),
+      linear-gradient(135deg, #e9e3d7, #70877d);
+  }
+
+  .bright-hope-mini {
+    background: #fffdf9;
+    color: #24332f;
+  }
+
+  .bright-hope-nav {
+    border-bottom: 1px solid rgba(112,135,125,.2);
+    background: rgba(255,253,249,.96);
+  }
+
+  .bright-hope-brand {
+    display: flex;
+    align-items: center;
+    gap: .45rem;
+    font-family: Georgia, serif;
+  }
+
+  .bright-hope-brand b {
+    font-size: .62rem;
+    font-weight: 500;
+    line-height: .9;
+  }
+
+  .bright-hope-brand small {
+    display: block;
+    margin-top: .2rem;
+    color: #8a5236;
+    font-family: Arial, sans-serif;
+    font-size: .28rem;
+    font-weight: 800;
+    letter-spacing: .15em;
+  }
+
+  .bright-hope-mark {
+    position: relative;
+    width: 1.25rem;
+    height: 1.25rem;
+    flex: 0 0 auto;
+    border: .12rem solid #70877d;
+    border-radius: 50%;
+  }
+
+  .bright-hope-mark::before,
+  .bright-hope-mark::after {
+    position: absolute;
+    left: 50%;
+    width: .08rem;
+    height: .72rem;
+    border-radius: 999px;
+    background: #b9795f;
+    content: '';
+    transform-origin: center;
+  }
+
+  .bright-hope-mark::before {
+    top: .14rem;
+    transform: translateX(-50%) rotate(45deg);
+  }
+
+  .bright-hope-mark::after {
+    bottom: .14rem;
+    transform: translateX(-50%) rotate(-45deg);
+  }
+
+  .bright-hope-hero {
+    display: grid;
+    grid-template-columns: 1.28fr .72fr;
+    min-height: 11.9rem;
+    align-items: center;
+    gap: .75rem;
+    padding: 1.15rem 1rem 1rem 1.2rem;
+    background: linear-gradient(135deg, #f5f0e8, #edf1ec);
+  }
+
+  .bright-hope-copy small {
+    display: block;
+    color: #8a5236;
+    font-size: .36rem;
+    font-weight: 800;
+    letter-spacing: .11em;
+  }
+
+  .bright-hope-copy strong {
+    display: block;
+    max-width: 13rem;
+    margin-top: .42rem;
+    font-family: Georgia, serif;
+    font-size: clamp(1.15rem, 3vw, 2rem);
+    font-weight: 400;
+    line-height: 1.04;
+  }
+
+  .bright-hope-copy p {
+    max-width: 12rem;
+    margin: .62rem 0 0;
+    color: #46534f;
+    font-size: .53rem;
+    line-height: 1.5;
+  }
+
+  .bright-hope-copy em {
+    background: #29483f;
+    color: white;
+  }
+
+  .bright-hope-portrait {
+    position: relative;
+    min-height: 9.6rem;
+    overflow: hidden;
+    border-radius: 5rem 5rem .8rem .8rem;
+    background:
+      radial-gradient(circle at 50% 22%, rgba(255,255,255,.55), transparent 24%),
+      linear-gradient(155deg, #c4d0c8, #82988d);
+  }
+
+  .portrait-head,
+  .portrait-body {
+    position: absolute;
+    display: block;
+    left: 50%;
+    background: rgba(56,86,77,.64);
+    transform: translateX(-50%);
+  }
+
+  .portrait-head {
+    width: 2.45rem;
+    height: 2.75rem;
+    top: 1.8rem;
+    border-radius: 48% 48% 44% 44%;
+  }
+
+  .portrait-body {
+    width: 5.4rem;
+    height: 5.8rem;
+    bottom: -2.6rem;
+    border-radius: 52% 52% 0 0;
+  }
+
+  .bright-hope-status {
+    padding: .55rem .8rem;
+    background: #29483f;
+    color: #eaf0ec;
+    font-size: .39rem;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-align: center;
   }
 
   /* Signal & Structure: energetic, modular, systems-focused. */
