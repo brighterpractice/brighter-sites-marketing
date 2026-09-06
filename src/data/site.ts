@@ -5,7 +5,7 @@ export const site = {
 };
 
 export const navigation = [
-  { label: 'Work', href: '/work/' },
+  { label: 'Example Sites', href: '/work/' },
   { label: 'Pricing & Services', href: '/services/' },
   { label: 'Process', href: '/process/' },
   { label: 'About', href: '/about/' },
