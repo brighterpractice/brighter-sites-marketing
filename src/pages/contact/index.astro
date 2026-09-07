@@ -4,7 +4,7 @@ import Layout from '../../layouts/Layout.astro';
 
 <Layout
   title="Start a Website Project | Brighter Sites"
-  description="Start a conversation with Brighter Sites about a custom website for your therapy, coaching, or wellness practice."
+  description="Start a conversation with Brighter Sites about a custom website for your therapy, coaching, or wellness practice, or request a free 15-minute website consultation."
 >
   <section class="page-intro">
     <div class="container">
@@ -26,19 +26,42 @@ import Layout from '../../layouts/Layout.astro';
         </p>
       </div>
 
-      <div class="contact-card">
+      <div class="contact-card" id="consultation">
+        <p>Free 15-minute website consultation</p>
+        <h3 style="margin-top:.45rem">Talk through your website before you decide.</h3>
+
+        <div style="margin-top:.85rem; color:var(--body); line-height:1.7">
+          Not sure what your practice needs or whether Brighter Sites is the right fit?
+          Request a free 15-minute online consultation to talk through your current
+          website, what you are looking for, and any questions about getting started.
+        </div>
+
+        <div style="margin-top:.8rem; color:var(--body); line-height:1.7">
+          Consultations are held online through Google Meet. No phone number is
+          required and there is no pressure or obligation.
+        </div>
+
+        <a
+          class="button"
+          href="mailto:help@brightersites.app?subject=Free%2015-Minute%20Website%20Consultation&body=Name%3A%0D%0APractice%20or%20business%20name%3A%0D%0AWebsite%20URL%20(if%20you%20have%20one)%3A%0D%0AWhat%20would%20you%20like%20to%20discuss%3F%3A%0D%0A"
+        >
+          Request a free 15-minute consultation
+        </a>
+
+        <div style="margin:1.6rem 0; border-top:1px solid var(--line)"></div>
+
         <p>Email</p>
         <a href="mailto:help@brightersites.app">
           help@brightersites.app
         </a>
 
-        <p style="margin-top:1.25rem">
-          Send a short introduction with your practice name, location, and what
-          you are hoping to improve or build. We will reply with the next steps
-          and any questions needed to understand the project.
-        </p>
+        <div style="margin-top:1rem; color:var(--body); line-height:1.7">
+          Prefer email? Send a short introduction with your practice name,
+          location, and what you are hoping to improve or build. We will reply
+          with the next steps and any questions needed to understand the project.
+        </div>
 
-        <a class="button" href="mailto:help@brightersites.app">
+        <a class="button secondary" href="mailto:help@brightersites.app">
           Start a conversation
         </a>
       </div>
