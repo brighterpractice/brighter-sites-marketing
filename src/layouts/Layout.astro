@@ -19,6 +19,7 @@ const socialImageUrl = new URL(
   '/images/branding/brighter-sites-icon.png',
   Astro.site
 ).toString();
+const showConsultationCta = Astro.url.pathname !== '/contact/';
 
 const schema = {
   '@context': 'https://schema.org',
@@ -115,6 +116,27 @@ const analyticsConfig = JSON.stringify({
     <main id="main">
       <slot />
     </main>
+
+    {
+      showConsultationCta && (
+        <section class="section">
+          <div class="container">
+            <div class="cta-panel">
+              <p class="eyebrow">Free 15-minute website consultation</p>
+              <h2>Have questions before you get started?</h2>
+              <p>
+                Talk through your current website, what your practice needs, and
+                whether Brighter Sites is a good fit. Consultations are held
+                online through Google Meet, with no pressure or obligation.
+              </p>
+              <a class="button secondary" href="/contact/#consultation">
+                Request a free 15-minute consultation
+              </a>
+            </div>
+          </div>
+        </section>
+      )
+    }
 
     <Footer />
 
