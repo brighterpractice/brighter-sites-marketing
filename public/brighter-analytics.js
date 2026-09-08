@@ -360,6 +360,90 @@
       return value.slice(0, 256);
     };
 
+    const normalizeCampaignToken = (
+      value,
+      maxLength
+    ) => {
+      if (typeof value !== 'string') {
+        return null;
+      }
+
+      const normalized = value
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, '-');
+
+      if (
+        !normalized ||
+        !/^[a-z0-9][a-z0-9._-]*$/.test(
+          normalized
+        )
+      ) {
+        return null;
+      }
+
+      const token = normalized
+        .slice(0, maxLength)
+        .replace(/[._-]+$/g, '');
+
+      return token || null;
+    };
+
+    const campaignAttribution = () => {
+      let searchParams;
+
+      try {
+        searchParams =
+          new URL(window.location.href)
+            .searchParams;
+      } catch {
+        return {};
+      }
+
+      /*
+       * Only these three approved UTM values are read.
+       * The complete query string is never included in
+       * an Analytics payload.
+       */
+      const campaignSource =
+        normalizeCampaignToken(
+          searchParams.get('utm_source'),
+          64
+        );
+
+      if (!campaignSource) {
+        return {};
+      }
+
+      const campaignMedium =
+        normalizeCampaignToken(
+          searchParams.get('utm_medium'),
+          64
+        );
+
+      const campaignName =
+        normalizeCampaignToken(
+          searchParams.get('utm_campaign'),
+          96
+        );
+
+      return {
+        campaign_source: campaignSource,
+        ...(campaignMedium
+          ? {
+              campaign_medium:
+                campaignMedium,
+            }
+          : {}),
+        ...(campaignName
+          ? {
+              campaign_name:
+                campaignName,
+            }
+          : {}),
+      };
+    };
+
     const referrerHost = () => {
       if (!document.referrer) return null;
 
@@ -601,6 +685,9 @@
             is_entry: isEntry,
             referrer_host: referrerHost(),
             device_category: deviceCategory(),
+            ...(isEntry
+              ? campaignAttribution()
+              : {}),
           }
         );
       }
