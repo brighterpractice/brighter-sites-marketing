@@ -82,7 +82,8 @@ async function runTracker({
   dnt = '',
   runtimeEnabled = true,
   runtimeFailure = false,
-  runtimeTrackerVersion = '2.1.1',
+  runtimeTrackerVersion = '2.2.0',
+  pageUrl = 'https://brightersites.app/',
 } = {}) {
   const requests = [];
   const configRequests = [];
@@ -93,7 +94,7 @@ async function runTracker({
       'https://analytics.brightersites.app',
     siteKey:
       'bs_live_' + 'a'.repeat(48),
-    scriptVersion: '2.1.1',
+    scriptVersion: '2.2.0',
   };
 
   class Element {}
@@ -136,12 +137,15 @@ async function runTracker({
     msDoNotTrack: '',
   };
 
+  const browserUrl =
+    new URL(pageUrl);
+
   const window = {
     location: {
-      pathname: '/',
-      hostname: 'brightersites.app',
-      origin: 'https://brightersites.app',
-      href: 'https://brightersites.app/',
+      pathname: browserUrl.pathname,
+      hostname: browserUrl.hostname,
+      origin: browserUrl.origin,
+      href: browserUrl.href,
     },
 
     doNotTrack: dnt,
@@ -734,5 +738,231 @@ test(
     assert.equal(localStorage.gets, 0);
     assert.equal(localStorage.sets, 0);
     assert.equal(localStorage.removes, 0);
+  }
+);
+
+test(
+  'entry event sends only normalized approved campaign fields',
+  async () => {
+    const result = await runTracker({
+      pageUrl:
+        'https://brightersites.app/?utm_source=Facebook&utm_medium=Messenger&utm_campaign=Therapist%20Outreach&utm_term=private&utm_content=private&arbitrary=private',
+    });
+
+    assert.equal(
+      result.requests.length,
+      1
+    );
+
+    const payload =
+      result.requests[0].payload;
+
+    assert.equal(
+      payload.is_entry,
+      true
+    );
+
+    assert.equal(
+      payload.campaign_source,
+      'facebook'
+    );
+
+    assert.equal(
+      payload.campaign_medium,
+      'messenger'
+    );
+
+    assert.equal(
+      payload.campaign_name,
+      'therapist-outreach'
+    );
+
+    assert.equal(
+      payload.page_path,
+      '/'
+    );
+
+    assert.equal(
+      Object.hasOwn(
+        payload,
+        'utm_source'
+      ),
+      false
+    );
+
+    assert.equal(
+      Object.hasOwn(
+        payload,
+        'utm_medium'
+      ),
+      false
+    );
+
+    assert.equal(
+      Object.hasOwn(
+        payload,
+        'utm_campaign'
+      ),
+      false
+    );
+
+    assert.equal(
+      Object.hasOwn(
+        payload,
+        'utm_term'
+      ),
+      false
+    );
+
+    assert.equal(
+      Object.hasOwn(
+        payload,
+        'utm_content'
+      ),
+      false
+    );
+
+    assert.equal(
+      Object.hasOwn(
+        payload,
+        'arbitrary'
+      ),
+      false
+    );
+  }
+);
+
+test(
+  'campaign source is required before campaign attribution is sent',
+  async () => {
+    const result = await runTracker({
+      pageUrl:
+        'https://brightersites.app/?utm_medium=group&utm_campaign=therapist_outreach',
+    });
+
+    const payload =
+      result.requests[0].payload;
+
+    assert.equal(
+      Object.hasOwn(
+        payload,
+        'campaign_source'
+      ),
+      false
+    );
+
+    assert.equal(
+      Object.hasOwn(
+        payload,
+        'campaign_medium'
+      ),
+      false
+    );
+
+    assert.equal(
+      Object.hasOwn(
+        payload,
+        'campaign_name'
+      ),
+      false
+    );
+  }
+);
+
+test(
+  'unsafe campaign source prevents attribution',
+  async () => {
+    const result = await runTracker({
+      pageUrl:
+        'https://brightersites.app/?utm_source=facebook%2Fgroups&utm_medium=group&utm_campaign=therapist_outreach',
+    });
+
+    const payload =
+      result.requests[0].payload;
+
+    assert.equal(
+      Object.hasOwn(
+        payload,
+        'campaign_source'
+      ),
+      false
+    );
+
+    assert.equal(
+      Object.hasOwn(
+        payload,
+        'campaign_medium'
+      ),
+      false
+    );
+
+    assert.equal(
+      Object.hasOwn(
+        payload,
+        'campaign_name'
+      ),
+      false
+    );
+  }
+);
+
+test(
+  'campaign attribution is sent only on the session entry event',
+  async () => {
+    const localStorage =
+      new StorageMock();
+
+    const sessionStorage =
+      new StorageMock();
+
+    const first = await runTracker({
+      localStorage,
+      sessionStorage,
+    });
+
+    assert.equal(
+      first.requests[0].payload
+        .is_entry,
+      true
+    );
+
+    const second = await runTracker({
+      localStorage,
+      sessionStorage,
+      pageUrl:
+        'https://brightersites.app/?utm_source=facebook&utm_medium=group&utm_campaign=therapist_outreach',
+    });
+
+    const payload =
+      second.requests[0].payload;
+
+    assert.equal(
+      payload.is_entry,
+      false
+    );
+
+    assert.equal(
+      Object.hasOwn(
+        payload,
+        'campaign_source'
+      ),
+      false
+    );
+
+    assert.equal(
+      Object.hasOwn(
+        payload,
+        'campaign_medium'
+      ),
+      false
+    );
+
+    assert.equal(
+      Object.hasOwn(
+        payload,
+        'campaign_name'
+      ),
+      false
+    );
   }
 );
