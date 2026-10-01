@@ -7,11 +7,13 @@ import '../styles/work-preview-refinements.css';
 interface Props {
   title?: string;
   description?: string;
+  hideConsultationCta?: boolean;
 }
 
 const {
   title = 'Small Business Website Design | Brighter Sites',
   description = 'Work directly with one person from your first conversation through launch and ongoing support. Custom websites, SEO foundations, and a free 15-minute consultation.',
+  hideConsultationCta = false,
 } = Astro.props;
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
@@ -19,7 +21,8 @@ const socialImageUrl = new URL(
   '/images/branding/brighter-sites-icon.png',
   Astro.site
 ).toString();
-const showConsultationCta = Astro.url.pathname !== '/contact/';
+const showConsultationCta =
+  !hideConsultationCta && Astro.url.pathname !== '/contact/';
 
 const schema = {
   '@context': 'https://schema.org',
