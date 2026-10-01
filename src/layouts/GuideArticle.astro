@@ -1,0 +1,264 @@
+---
+import Layout from './Layout.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  category: string;
+  heading: string;
+  lead: string;
+}
+
+const { title, description, category, heading, lead } = Astro.props;
+---
+
+<Layout title={title} description={description}>
+  <section class="page-intro guide-intro">
+    <div class="container guide-intro-inner">
+      <p class="guide-breadcrumb">
+        <a href="/guides/">Brighter Sites Guides</a>
+        <span aria-hidden="true">/</span>
+        <span>{category}</span>
+      </p>
+      <p class="eyebrow">{category}</p>
+      <h1>{heading}</h1>
+      <p class="guide-lead">{lead}</p>
+      <p class="guide-purpose">
+        Plain-English business guidance about why this matters—not a step-by-step setup tutorial.
+      </p>
+    </div>
+  </section>
+
+  <section class="section guide-section">
+    <div class="container guide-layout">
+      <aside class="guide-aside" aria-label="Guide navigation">
+        <strong>Brighter Sites Guides</strong>
+        <p>
+          Understand the web, search, and digital systems behind a stronger online presence.
+        </p>
+        <a class="text-link" href="/guides/">View all guides →</a>
+      </aside>
+
+      <article class="guide-body">
+        <slot />
+      </article>
+    </div>
+  </section>
+
+  <section class="section tint">
+    <div class="container">
+      <div class="guide-cta">
+        <p class="eyebrow">The time-cost question</p>
+        <h2>You can learn the web side of your business. You do not have to own that job.</h2>
+        <p>
+          Many website, search, domain, and analytics tasks are possible to do yourself.
+          The business decision is whether learning, configuring, troubleshooting, and
+          maintaining them is the best use of your time.
+        </p>
+        <div class="guide-cta-actions">
+          <a class="button" href="/contact/#consultation">Request a free 15-minute consultation</a>
+          <a class="text-link" href="/services/">View pricing & services →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style is:global>
+  .guide-intro {
+    padding-bottom: 4rem;
+  }
+
+  .guide-intro-inner {
+    max-width: 62rem;
+  }
+
+  .guide-breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .45rem;
+    margin-bottom: 1.35rem;
+    color: var(--body);
+    font-size: .82rem;
+  }
+
+  .guide-breadcrumb a {
+    color: var(--teal-dark);
+    font-weight: 750;
+    text-decoration: none;
+  }
+
+  .guide-breadcrumb a:hover {
+    text-decoration: underline;
+  }
+
+  .guide-intro h1 {
+    max-width: 15ch;
+  }
+
+  .guide-lead {
+    max-width: 48rem;
+    margin-top: 1.4rem;
+    color: var(--ink-soft);
+    font-size: clamp(1.08rem, 1.8vw, 1.3rem);
+  }
+
+  .guide-purpose {
+    width: fit-content;
+    max-width: 46rem;
+    margin-top: 1.2rem;
+    padding: .75rem .9rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background: white;
+    color: var(--body);
+    font-size: .86rem;
+  }
+
+  .guide-layout {
+    display: grid;
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  .guide-aside {
+    padding: 1.25rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--cream);
+  }
+
+  .guide-aside strong {
+    color: var(--ink);
+  }
+
+  .guide-aside p {
+    margin: .55rem 0 .9rem;
+    font-size: .9rem;
+  }
+
+  .guide-body {
+    max-width: 48rem;
+  }
+
+  .guide-body > :first-child {
+    margin-top: 0;
+  }
+
+  .guide-body h2 {
+    margin-top: 2.8rem;
+    margin-bottom: .9rem;
+    font-size: clamp(2rem, 4vw, 2.85rem);
+  }
+
+  .guide-body h3 {
+    margin-top: 1.8rem;
+    margin-bottom: .6rem;
+  }
+
+  .guide-body p + p {
+    margin-top: 1rem;
+  }
+
+  .guide-body ul {
+    display: grid;
+    gap: .7rem;
+    margin: 1rem 0 0;
+    padding-left: 1.25rem;
+  }
+
+  .guide-body li {
+    padding-left: .2rem;
+  }
+
+  .guide-callout {
+    margin: 2rem 0;
+    padding: 1.35rem 1.45rem;
+    border-left: 4px solid var(--teal);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    background: var(--cream);
+  }
+
+  .guide-callout strong,
+  .guide-time-cost strong {
+    display: block;
+    margin-bottom: .45rem;
+    color: var(--ink);
+  }
+
+  .guide-time-cost {
+    margin: 2.2rem 0;
+    padding: 1.5rem;
+    border: 1px solid rgba(39,119,111,.3);
+    border-radius: var(--radius);
+    background:
+      linear-gradient(180deg, rgba(216,235,230,.48), white 65%);
+  }
+
+  .guide-time-cost p + p {
+    margin-top: .8rem;
+  }
+
+  .guide-example {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--line);
+    color: var(--ink-soft);
+    font-size: .92rem;
+  }
+
+  .guide-related {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .guide-related strong {
+    color: var(--ink);
+  }
+
+  .guide-related-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .65rem 1.2rem;
+    margin-top: .75rem;
+  }
+
+  .guide-cta {
+    max-width: 58rem;
+    padding: clamp(1.75rem, 5vw, 3rem);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: white;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .guide-cta h2 {
+    max-width: 18ch;
+  }
+
+  .guide-cta > p:not(.eyebrow) {
+    max-width: 44rem;
+    margin-top: 1rem;
+  }
+
+  .guide-cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.25rem;
+    margin-top: 1.5rem;
+  }
+
+  @media (min-width: 56rem) {
+    .guide-layout {
+      grid-template-columns: 15rem minmax(0, 1fr);
+      gap: 4rem;
+    }
+
+    .guide-aside {
+      position: sticky;
+      top: 7rem;
+    }
+  }
+</style>
