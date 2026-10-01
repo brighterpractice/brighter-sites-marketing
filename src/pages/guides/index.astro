@@ -1,0 +1,208 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { guides, guideHref } from '../../data/guides';
+
+const categories = ['Search & Google', 'Website Foundations', 'Analytics & Improvement'] as const;
+---
+
+<Layout
+  title="Small Business Website & Search Guides | Brighter Sites"
+  description="Plain-English guides explaining website architecture, SEO, Google Search Console, Google Business Profile, domains, analytics, and the tradeoffs behind DIY website work."
+>
+  <section class="page-intro guides-intro">
+    <div class="container guides-intro-grid">
+      <div>
+        <p class="eyebrow">Brighter Sites Guides</p>
+        <h1>Understand what matters behind a strong online presence.</h1>
+      </div>
+      <div class="guides-lead">
+        <p>
+          These guides are for business owners who want to understand the web
+          decisions affecting their business without turning themselves into a
+          web developer, SEO specialist, or analytics administrator.
+        </p>
+        <p>
+          The goal is not to teach you every setup step. It is to explain what
+          each system does, why it matters, what can affect it, and when the time
+          required to do it yourself may cost more than getting help.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tint">
+    <div class="container">
+      <div class="guide-principle">
+        <p class="eyebrow">A practical way to think about DIY</p>
+        <h2>“Can I do this myself?” and “Should I spend my time doing this?” are different questions.</h2>
+        <p>
+          Many digital tools are free or inexpensive. The hidden cost is often
+          the time spent learning the system, configuring it, troubleshooting it,
+          checking your work, and maintaining it later.
+        </p>
+        <div class="guide-principle-example">
+          <strong>Example:</strong>
+          <span>
+            If a task would take four hours of your time, compare the value of
+            those four hours with the cost of having someone experienced handle
+            it. The right answer is different for every business.
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {
+    categories.map((category) => (
+      <section class="section guide-category">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">{category}</p>
+            <h2>
+              {category === 'Search & Google'
+                ? 'Know what affects whether people can find you.'
+                : category === 'Website Foundations'
+                  ? 'Understand the systems your website depends on.'
+                  : 'Turn website activity into useful business information.'}
+            </h2>
+          </div>
+
+          <div class="guides-grid">
+            {guides
+              .filter((guide) => guide.category === category)
+              .map((guide) => (
+                <article class="guide-card">
+                  <p class="guide-card-category">{guide.category}</p>
+                  <h3>{guide.title}</h3>
+                  <p>{guide.summary}</p>
+                  <a class="text-link" href={guideHref(guide.slug)}>
+                    Read the guide →
+                  </a>
+                </article>
+              ))}
+          </div>
+        </div>
+      </section>
+    ))
+  }
+
+  <section class="section">
+    <div class="container">
+      <div class="cta-panel">
+        <p class="eyebrow">Want the web side handled?</p>
+        <h2>Spend your time on the parts of the business only you can do.</h2>
+        <p>
+          Brighter Sites can handle website structure, launch work, search
+          foundations, analytics, domains, and ongoing website management while
+          keeping you informed about what matters.
+        </p>
+        <a class="button" href="/contact/#consultation">
+          Request a free 15-minute consultation
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .guides-intro-grid {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .guides-intro h1 {
+    max-width: 14ch;
+  }
+
+  .guides-lead {
+    max-width: 46rem;
+  }
+
+  .guides-lead p + p {
+    margin-top: 1rem;
+  }
+
+  .guide-principle {
+    max-width: 58rem;
+    padding: clamp(1.75rem, 5vw, 3rem);
+    border: 1px solid rgba(39,119,111,.28);
+    border-radius: var(--radius-lg);
+    background: white;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .guide-principle h2 {
+    max-width: 20ch;
+  }
+
+  .guide-principle > p:not(.eyebrow) {
+    max-width: 46rem;
+    margin-top: 1rem;
+  }
+
+  .guide-principle-example {
+    display: grid;
+    gap: .25rem;
+    margin-top: 1.4rem;
+    padding: 1rem 1.1rem;
+    border-left: 3px solid var(--teal);
+    background: var(--cream);
+  }
+
+  .guide-principle-example strong {
+    color: var(--ink);
+  }
+
+  .guides-grid {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .guide-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: white;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .guide-card-category {
+    margin-bottom: .65rem;
+    color: var(--teal-dark);
+    font-size: .72rem;
+    font-weight: 850;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+
+  .guide-card p:not(.guide-card-category) {
+    margin-top: .75rem;
+  }
+
+  .guide-card .text-link {
+    margin-top: 1.1rem;
+  }
+
+  .guide-category + .guide-category {
+    padding-top: 0;
+  }
+
+  @media (min-width: 48rem) {
+    .guides-intro-grid {
+      grid-template-columns: .9fr 1.1fr;
+      align-items: start;
+    }
+
+    .guides-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 70rem) {
+    .guides-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>
