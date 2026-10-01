@@ -12,7 +12,7 @@ interface Props {
 const { title, description, category, heading, lead } = Astro.props;
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} hideConsultationCta={true}>
   <section class="page-intro guide-intro">
     <div class="container guide-intro-inner">
       <p class="guide-breadcrumb">
