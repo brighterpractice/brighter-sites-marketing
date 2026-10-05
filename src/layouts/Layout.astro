@@ -11,8 +11,8 @@ interface Props {
 }
 
 const {
-  title = 'Small Business Website Design & Digital Presence | Brighter Sites',
-  description = 'Custom websites, technical SEO foundations, local search setup, analytics, and digital presence support for small businesses, with specialized experience serving therapists, counselors, coaches, and wellness professionals.',
+  title = 'Custom Websites for Small Businesses | Brighter Sites',
+  description = 'Custom websites and digital presence support for small businesses, including technical SEO, local search setup, analytics, and ongoing website management. Specialized experience with therapists, counselors, coaches, and wellness professionals.',
   hideConsultationCta = false,
 } = Astro.props;
 
@@ -23,6 +23,7 @@ const socialImageUrl = new URL(
 ).toString();
 const showConsultationCta =
   !hideConsultationCta && Astro.url.pathname !== '/contact/';
+const showHomePositioning = Astro.url.pathname === '/';
 
 const schema = {
   '@context': 'https://schema.org',
@@ -138,6 +139,22 @@ const analyticsConfig = JSON.stringify({
     <Header />
 
     <main id="main">
+      {
+        showHomePositioning && (
+          <section class="home-positioning-strip" aria-label="Who Brighter Sites serves">
+            <div class="container home-positioning-inner">
+              <strong>Websites & digital presence for small businesses</strong>
+              <span>
+                Serving businesses broadly, with specialized experience in therapy,
+                counseling, coaching, wellness, and other trust-based services.
+              </span>
+              <a href="/small-business-websites/">Small-business services →</a>
+              <a href="/treasure-valley-website-design/">Treasure Valley →</a>
+            </div>
+          </section>
+        )
+      }
+
       <slot />
     </main>
 
@@ -177,3 +194,39 @@ const analyticsConfig = JSON.stringify({
   ></script>
 </body>
 </html>
+
+<style>
+  .home-positioning-strip {
+    border-bottom: 1px solid var(--line);
+    background: white;
+  }
+
+  .home-positioning-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .35rem .8rem;
+    padding-top: .7rem;
+    padding-bottom: .7rem;
+    font-size: .78rem;
+    line-height: 1.45;
+  }
+
+  .home-positioning-inner strong {
+    color: var(--ink);
+  }
+
+  .home-positioning-inner span {
+    color: var(--body);
+  }
+
+  .home-positioning-inner a {
+    color: var(--teal-dark);
+    font-weight: 750;
+    text-decoration: none;
+  }
+
+  .home-positioning-inner a:hover {
+    text-decoration: underline;
+  }
+</style>
