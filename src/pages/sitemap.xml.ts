@@ -18,10 +18,12 @@ const pages = [
   '/process/',
   '/resources/',
   '/services/',
+  '/small-business-websites/',
   '/therapist-websites/',
   '/coaching-websites/',
   '/wellness-practitioner-websites/',
   '/terms/',
+  '/treasure-valley-website-design/',
   '/website-strategy/',
   '/work/',
 ];

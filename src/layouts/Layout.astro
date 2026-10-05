@@ -11,8 +11,8 @@ interface Props {
 }
 
 const {
-  title = 'Small Business Website Design | Brighter Sites',
-  description = 'Work directly with one person from your first conversation through launch and ongoing support. Custom websites, SEO foundations, and a free 15-minute consultation.',
+  title = 'Custom Websites for Small Businesses | Brighter Sites',
+  description = 'Custom websites and digital presence support for small businesses, including technical SEO, local search setup, analytics, and ongoing website management. Specialized experience with therapists, counselors, coaches, and wellness professionals.',
   hideConsultationCta = false,
 } = Astro.props;
 
@@ -23,6 +23,7 @@ const socialImageUrl = new URL(
 ).toString();
 const showConsultationCta =
   !hideConsultationCta && Astro.url.pathname !== '/contact/';
+const showHomePositioning = Astro.url.pathname === '/';
 
 const schema = {
   '@context': 'https://schema.org',
@@ -34,8 +35,29 @@ const schema = {
       url: 'https://brightersites.app/',
       logo: 'https://brightersites.app/images/branding/brighter-sites-icon.png',
       description:
-        'Custom website design, technical SEO foundations, analytics, and ongoing website management for small businesses and professional practices.',
+        'Custom website design, technical SEO foundations, local search setup, analytics, digital presence support, and ongoing website management for small businesses, with specialized experience serving therapists, counselors, coaches, and wellness professionals.',
       email: 'help@brightersites.app',
+      areaServed: [
+        { '@type': 'Place', name: 'Treasure Valley, Idaho' },
+        { '@type': 'City', name: 'Meridian, Idaho' },
+        { '@type': 'City', name: 'Boise, Idaho' },
+        { '@type': 'City', name: 'Eagle, Idaho' },
+        { '@type': 'City', name: 'Nampa, Idaho' },
+        { '@type': 'City', name: 'Kuna, Idaho' },
+        { '@type': 'City', name: 'Star, Idaho' },
+      ],
+      knowsAbout: [
+        'Small business website design',
+        'Website development',
+        'Technical SEO',
+        'Local search visibility',
+        'Google Business Profile',
+        'Google Search Console',
+        'Website analytics',
+        'Domain and DNS management',
+        'Website performance',
+        'Ongoing website management',
+      ],
       founder: {
         '@id': 'https://brightersites.app/#isaac-bright',
       },
@@ -117,6 +139,22 @@ const analyticsConfig = JSON.stringify({
     <Header />
 
     <main id="main">
+      {
+        showHomePositioning && (
+          <section class="home-positioning-strip" aria-label="Who Brighter Sites serves">
+            <div class="container home-positioning-inner">
+              <strong>Websites & digital presence for small businesses</strong>
+              <span>
+                Serving businesses broadly, with specialized experience in therapy,
+                counseling, coaching, wellness, and other trust-based services.
+              </span>
+              <a href="/small-business-websites/">Small-business services →</a>
+              <a href="/treasure-valley-website-design/">Treasure Valley →</a>
+            </div>
+          </section>
+        )
+      }
+
       <slot />
     </main>
 
@@ -128,7 +166,7 @@ const analyticsConfig = JSON.stringify({
               <p class="eyebrow">Free 15-minute website consultation</p>
               <h2>Have questions before you get started?</h2>
               <p>
-                Talk through your current website, what your practice needs, and
+                Talk through your current website, what your business needs, and
                 whether Brighter Sites is a good fit. Consultations are held
                 online through Google Meet, with no pressure or obligation.
               </p>
@@ -156,3 +194,39 @@ const analyticsConfig = JSON.stringify({
   ></script>
 </body>
 </html>
+
+<style>
+  .home-positioning-strip {
+    border-bottom: 1px solid var(--line);
+    background: white;
+  }
+
+  .home-positioning-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .35rem .8rem;
+    padding-top: .7rem;
+    padding-bottom: .7rem;
+    font-size: .78rem;
+    line-height: 1.45;
+  }
+
+  .home-positioning-inner strong {
+    color: var(--ink);
+  }
+
+  .home-positioning-inner span {
+    color: var(--body);
+  }
+
+  .home-positioning-inner a {
+    color: var(--teal-dark);
+    font-weight: 750;
+    text-decoration: none;
+  }
+
+  .home-positioning-inner a:hover {
+    text-decoration: underline;
+  }
+</style>
