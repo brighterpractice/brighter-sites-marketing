@@ -11,8 +11,8 @@ interface Props {
 }
 
 const {
-  title = 'Small Business Website Design | Brighter Sites',
-  description = 'Work directly with one person from your first conversation through launch and ongoing support. Custom websites, SEO foundations, and a free 15-minute consultation.',
+  title = 'Small Business Website Design & Digital Presence | Brighter Sites',
+  description = 'Custom websites, technical SEO foundations, local search setup, analytics, and digital presence support for small businesses, with specialized experience serving therapists, counselors, coaches, and wellness professionals.',
   hideConsultationCta = false,
 } = Astro.props;
 
@@ -34,8 +34,29 @@ const schema = {
       url: 'https://brightersites.app/',
       logo: 'https://brightersites.app/images/branding/brighter-sites-icon.png',
       description:
-        'Custom website design, technical SEO foundations, analytics, and ongoing website management for small businesses and professional practices.',
+        'Custom website design, technical SEO foundations, local search setup, analytics, digital presence support, and ongoing website management for small businesses, with specialized experience serving therapists, counselors, coaches, and wellness professionals.',
       email: 'help@brightersites.app',
+      areaServed: [
+        { '@type': 'Place', name: 'Treasure Valley, Idaho' },
+        { '@type': 'City', name: 'Meridian, Idaho' },
+        { '@type': 'City', name: 'Boise, Idaho' },
+        { '@type': 'City', name: 'Eagle, Idaho' },
+        { '@type': 'City', name: 'Nampa, Idaho' },
+        { '@type': 'City', name: 'Kuna, Idaho' },
+        { '@type': 'City', name: 'Star, Idaho' },
+      ],
+      knowsAbout: [
+        'Small business website design',
+        'Website development',
+        'Technical SEO',
+        'Local search visibility',
+        'Google Business Profile',
+        'Google Search Console',
+        'Website analytics',
+        'Domain and DNS management',
+        'Website performance',
+        'Ongoing website management',
+      ],
       founder: {
         '@id': 'https://brightersites.app/#isaac-bright',
       },
@@ -128,7 +149,7 @@ const analyticsConfig = JSON.stringify({
               <p class="eyebrow">Free 15-minute website consultation</p>
               <h2>Have questions before you get started?</h2>
               <p>
-                Talk through your current website, what your practice needs, and
+                Talk through your current website, what your business needs, and
                 whether Brighter Sites is a good fit. Consultations are held
                 online through Google Meet, with no pressure or obligation.
               </p>
