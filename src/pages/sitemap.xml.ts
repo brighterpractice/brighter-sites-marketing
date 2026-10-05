@@ -16,6 +16,7 @@ const pages = [
   '/guides/website-analytics/',
   '/privacy/',
   '/process/',
+  '/resources/',
   '/services/',
   '/therapist-websites/',
   '/coaching-websites/',
