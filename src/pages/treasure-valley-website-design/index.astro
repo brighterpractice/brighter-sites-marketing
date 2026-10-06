@@ -1,10 +1,31 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+
+const serviceSchema = {
+  '@type': 'Service',
+  '@id': 'https://brightersites.app/treasure-valley-website-design/#service',
+  name: 'Treasure Valley Small Business Website Design',
+  serviceType: 'Local Small Business Website Design',
+  url: 'https://brightersites.app/treasure-valley-website-design/',
+  provider: {
+    '@id': 'https://brightersites.app/#business',
+  },
+  areaServed: [
+    { '@type': 'Place', name: 'Treasure Valley, Idaho' },
+    { '@type': 'City', name: 'Meridian, Idaho' },
+    { '@type': 'City', name: 'Boise, Idaho' },
+    { '@type': 'City', name: 'Eagle, Idaho' },
+    { '@type': 'City', name: 'Nampa, Idaho' },
+    { '@type': 'City', name: 'Kuna, Idaho' },
+    { '@type': 'City', name: 'Star, Idaho' },
+  ],
+};
 ---
 
 <Layout
   title="Treasure Valley Website Design & Digital Presence | Brighter Sites"
   description="Custom website design, technical SEO, Google Business Profile, Search Console, analytics, domains, and ongoing digital presence support for small businesses across Meridian, Boise, Eagle, Nampa, Kuna, Star, and the Treasure Valley."
+  additionalSchema={[serviceSchema]}
 >
   <section class="page-intro local-intro">
     <div class="container local-hero-grid">
