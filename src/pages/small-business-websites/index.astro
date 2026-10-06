@@ -1,10 +1,26 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+
+const serviceSchema = {
+  '@type': 'Service',
+  '@id': 'https://brightersites.app/small-business-websites/#service',
+  name: 'Small Business Website Design and Web Management',
+  serviceType: 'Small Business Website Design',
+  url: 'https://brightersites.app/small-business-websites/',
+  provider: {
+    '@id': 'https://brightersites.app/#business',
+  },
+  areaServed: {
+    '@type': 'Country',
+    name: 'United States',
+  },
+};
 ---
 
 <Layout
   title="Small Business Website Design & Digital Presence | Brighter Sites"
   description="Custom website design, technical SEO, local search setup, analytics, domains, and ongoing digital presence support for small businesses. Specialized experience with therapists, counselors, coaches, and wellness professionals."
+  additionalSchema={[serviceSchema]}
 >
   <section class="page-intro small-business-intro">
     <div class="container small-business-hero-grid">
