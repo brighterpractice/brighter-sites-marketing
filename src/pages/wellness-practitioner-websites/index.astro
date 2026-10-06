@@ -1,16 +1,37 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+
+const serviceSchema = {
+  '@type': 'Service',
+  '@id': 'https://brightersites.app/wellness-practitioner-websites/#service',
+  name: 'Website Design for Wellness Professionals',
+  serviceType: 'Wellness Professional Website Design',
+  url: 'https://brightersites.app/wellness-practitioner-websites/',
+  provider: {
+    '@id': 'https://brightersites.app/#business',
+  },
+  areaServed: {
+    '@type': 'Country',
+    name: 'United States',
+  },
+  audience: {
+    '@type': 'Audience',
+    audienceType:
+      'Wellness professionals, mindfulness teachers, breathwork practitioners, holistic wellness providers, and related trust-based practices',
+  },
+};
 ---
 
 <Layout
-  title="Website Design for Wellness Professionals | Brighter Sites"
-  description="Custom website design for wellness professionals, mindfulness teachers, breathwork practitioners, holistic wellness coaches, nature-based practices, and other trust-based services."
+  title="Custom Website Design for Wellness Professionals | Brighter Sites"
+  description="Custom website design for wellness professionals, mindfulness teachers, breathwork practitioners, holistic wellness providers, and other trust-based practices."
+  additionalSchema={[serviceSchema]}
 >
   <section class="page-intro">
     <div class="container">
       <p class="eyebrow">Website design for wellness professionals</p>
 
-      <h1>Your website should make a personal, less-familiar service easy to understand and trust.</h1>
+      <h1>Custom website design for wellness professionals and practices.</h1>
 
       <p class="page-lead">
         Brighter Sites builds custom websites for independent wellness
@@ -161,7 +182,7 @@ import Layout from '../../layouts/Layout.astro';
 
       <p style="margin-top:2rem">
         <a class="text-link" href="/website-strategy/">
-          Learn about SEO, analytics, and website strategy →
+          Explore SEO and analytics for wellness websites →
         </a>
       </p>
     </div>
@@ -180,7 +201,7 @@ import Layout from '../../layouts/Layout.astro';
           into a clear website structure and design direction.
         </p>
 
-        <a class="button" href="/contact/">Talk about your wellness website</a>
+        <a class="button" href="/contact/">Plan a custom wellness website</a>
       </div>
     </div>
   </section>

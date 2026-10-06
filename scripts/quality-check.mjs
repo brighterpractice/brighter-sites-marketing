@@ -68,6 +68,37 @@ function getCanonical(html) {
   return '';
 }
 
+
+function getJsonLdBlocks(html) {
+  const blocks = [];
+  const scriptPattern = /<script\b([^>]*)>([\s\S]*?)<\/script>/gi;
+
+  for (const match of html.matchAll(scriptPattern)) {
+    const attrs = match[1] ?? '';
+    const type = getAttr(`<script ${attrs}>`, 'type');
+
+    if ((type ?? '').toLowerCase() === 'application/ld+json') {
+      blocks.push(match[2].trim());
+    }
+  }
+
+  return blocks;
+}
+
+function schemaGraphNodes(parsed) {
+  if (!parsed || typeof parsed !== 'object') return [];
+
+  if (Array.isArray(parsed)) {
+    return parsed.flatMap(schemaGraphNodes);
+  }
+
+  if (Array.isArray(parsed['@graph'])) {
+    return parsed['@graph'];
+  }
+
+  return [parsed];
+}
+
 function isNoindex(html) {
   const tags = html.match(/<meta\b[^>]*>/gi) ?? [];
 
@@ -171,6 +202,52 @@ for (const page of pages.values()) {
             `${page.route}: canonical path ${canonical.pathname} does not match ${expectedPath}`
           );
         }
+      }
+    }
+  }
+}
+
+// Structured data validity and core entity coverage.
+for (const page of indexable) {
+  const blocks = getJsonLdBlocks(page.html);
+
+  if (!blocks.length) {
+    fail(`${page.route}: missing JSON-LD structured data`);
+    continue;
+  }
+
+  const nodes = [];
+
+  for (const block of blocks) {
+    try {
+      nodes.push(...schemaGraphNodes(JSON.parse(block)));
+    } catch (error) {
+      fail(
+        `${page.route}: invalid JSON-LD (${error instanceof Error ? error.message : String(error)})`
+      );
+    }
+  }
+
+  if (page.route === '/') {
+    const business = nodes.find(
+      (node) =>
+        node &&
+        typeof node === 'object' &&
+        node['@id'] === 'https://brightersites.app/#business'
+    );
+
+    if (!business) {
+      fail('/: missing Brighter Sites business entity in JSON-LD');
+    } else {
+      const type = business['@type'];
+      const types = Array.isArray(type) ? type : [type];
+
+      if (!types.includes('ProfessionalService')) {
+        fail('/: Brighter Sites business entity must include ProfessionalService');
+      }
+
+      if (!Array.isArray(business.makesOffer) || business.makesOffer.length < 1) {
+        fail('/: Brighter Sites business entity is missing service offer data');
       }
     }
   }

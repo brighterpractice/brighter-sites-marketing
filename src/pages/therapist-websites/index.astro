@@ -1,16 +1,37 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+
+const serviceSchema = {
+  '@type': 'Service',
+  '@id': 'https://brightersites.app/therapist-websites/#service',
+  name: 'Website Design for Therapists and Counselors',
+  serviceType: 'Mental Health Web Design',
+  url: 'https://brightersites.app/therapist-websites/',
+  provider: {
+    '@id': 'https://brightersites.app/#business',
+  },
+  areaServed: {
+    '@type': 'Country',
+    name: 'United States',
+  },
+  audience: {
+    '@type': 'Audience',
+    audienceType:
+      'Therapists, counselors, psychologists, clinical social workers, and behavioral health practices',
+  },
+};
 ---
 
 <Layout
-  title="Therapist Website Design for Private Practices | Brighter Sites"
-  description="Custom website design for therapists, counselors, and private practices, with thoughtful client pathways, technical SEO foundations, launch support, and optional ongoing care."
+  title="Custom Website Design for Therapists & Counselors | Brighter Sites"
+  description="Custom website design for therapists, counselors, psychologists, and private practices. Clear intake paths, practitioner profiles, search-ready structure, and ongoing web management."
+  additionalSchema={[serviceSchema]}
 >
   <section class="page-intro">
     <div class="container">
       <p class="eyebrow">Website design for therapists & counselors</p>
 
-      <h1>A therapy website should help the right client feel comfortable taking the next step.</h1>
+      <h1>Custom website design for therapists and counseling practices.</h1>
 
       <p class="page-lead">
         Brighter Sites designs custom websites for therapists, counselors,
@@ -117,6 +138,66 @@ import Layout from '../../layouts/Layout.astro';
   <section class="section tint">
     <div class="container">
       <div class="section-heading">
+        <p class="eyebrow">Practice systems & secure pathways</p>
+        <h2>Connect your therapy website to the systems clients and referral sources already use.</h2>
+        <p>
+          A behavioral-health website often sits in front of scheduling, intake,
+          client-portal, and referral systems. Brighter Sites can create clear
+          pathways into supported workflows from platforms such as SimplePractice,
+          TherapyNotes, and Alma without pretending the public marketing site
+          should replace those systems.
+        </p>
+      </div>
+
+      <div class="feature-grid">
+        <article class="feature">
+          <h3>SimplePractice website pathways</h3>
+          <p>
+            Direct prospective clients to supported consultation, contact,
+            scheduling, or client-portal destinations while keeping the public
+            website focused on education, fit, and trust.
+          </p>
+        </article>
+
+        <article class="feature">
+          <h3>TherapyNotes intake and portal pathways</h3>
+          <p>
+            Build clear calls to action around the practice's supported
+            TherapyNotes workflows instead of collecting sensitive clinical
+            information in ordinary website forms.
+          </p>
+        </article>
+
+        <article class="feature">
+          <h3>Alma profile and referral pathways</h3>
+          <p>
+            Connect appropriate public profile or referral destinations when
+            Alma is part of how the practice receives inquiries or presents
+            insurance-network information.
+          </p>
+        </article>
+      </div>
+
+      <div class="ownership-note" style="margin-top:2rem">
+        <div>
+          <p class="eyebrow">HIPAA-conscious website decisions</p>
+          <h3>Keep marketing pages and sensitive client workflows in the right places.</h3>
+        </div>
+        <p>
+          Brighter Sites does not label an ordinary public website “HIPAA
+          compliant” as a blanket promise. Forms, analytics, scheduling links,
+          portals, and third-party scripts need to be evaluated based on what
+          information they handle. When sensitive information is involved, the
+          website should route people into an appropriate secure system rather
+          than collect more data than the marketing site needs.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-heading">
         <p class="eyebrow">Search visibility</p>
         <h2>A strong therapy website also needs a structure search engines can understand.</h2>
 
@@ -157,7 +238,7 @@ import Layout from '../../layouts/Layout.astro';
 
       <p style="margin-top:2rem">
         <a class="text-link" href="/website-strategy/">
-          Learn more about SEO, analytics, and website strategy →
+          Explore SEO and analytics for therapy websites →
         </a>
       </p>
     </div>
@@ -176,7 +257,7 @@ import Layout from '../../layouts/Layout.astro';
           project.
         </p>
 
-        <a class="button" href="/contact/">Talk about your therapy website</a>
+        <a class="button" href="/contact/">Plan a custom therapy practice website</a>
       </div>
     </div>
   </section>
