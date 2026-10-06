@@ -8,12 +8,14 @@ interface Props {
   title?: string;
   description?: string;
   hideConsultationCta?: boolean;
+  additionalSchema?: Record<string, unknown>[];
 }
 
 const {
-  title = 'Custom Websites for Small Businesses | Brighter Sites',
-  description = 'Custom websites and digital presence support for small businesses, including technical SEO, local search setup, analytics, and ongoing website management. Specialized experience with therapists, counselors, coaches, and wellness professionals.',
+  title = 'Custom Website Design for Small Businesses | Brighter Sites',
+  description = 'Custom website design, technical SEO, analytics, and ongoing web management for small businesses. Specialized experience with therapists, counselors, coaches, and wellness professionals.',
   hideConsultationCta = false,
+  additionalSchema = [],
 } = Astro.props;
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
@@ -29,15 +31,17 @@ const schema = {
   '@context': 'https://schema.org',
   '@graph': [
     {
-      '@type': 'Organization',
-      '@id': 'https://brightersites.app/#organization',
+      '@type': 'ProfessionalService',
+      '@id': 'https://brightersites.app/#business',
       name: 'Brighter Sites',
       url: 'https://brightersites.app/',
       logo: 'https://brightersites.app/images/branding/brighter-sites-icon.png',
       description:
         'Custom website design, technical SEO foundations, local search setup, analytics, digital presence support, and ongoing website management for small businesses, with specialized experience serving therapists, counselors, coaches, and wellness professionals.',
       email: 'help@brightersites.app',
+      priceRange: '$29–$2,000+',
       areaServed: [
+        { '@type': 'Country', name: 'United States' },
         { '@type': 'Place', name: 'Treasure Valley, Idaho' },
         { '@type': 'City', name: 'Meridian, Idaho' },
         { '@type': 'City', name: 'Boise, Idaho' },
@@ -48,6 +52,10 @@ const schema = {
       ],
       knowsAbout: [
         'Small business website design',
+        'Therapist website design',
+        'Counselor website design',
+        'Coaching website design',
+        'Wellness professional website design',
         'Website development',
         'Technical SEO',
         'Local search visibility',
@@ -61,6 +69,40 @@ const schema = {
       founder: {
         '@id': 'https://brightersites.app/#isaac-bright',
       },
+      makesOffer: [
+        {
+          '@type': 'Offer',
+          name: 'Founding Practice Program',
+          url: 'https://brightersites.app/services/',
+          price: '1250',
+          priceCurrency: 'USD',
+          description:
+            'Professional Website founding starting price for qualifying founding-practice projects.',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Custom Website Design',
+            serviceType: 'Small Business Website Design',
+          },
+        },
+        {
+          '@type': 'Offer',
+          url: 'https://brightersites.app/therapist-websites/',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Website Design for Therapists and Counselors',
+            serviceType: 'Mental Health Web Design',
+          },
+        },
+        {
+          '@type': 'Offer',
+          url: 'https://brightersites.app/coaching-websites/',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Website Design for Coaches',
+            serviceType: 'Coaching Web Design',
+          },
+        },
+      ],
     },
     {
       '@type': 'Person',
@@ -69,7 +111,7 @@ const schema = {
       url: 'https://brightersites.app/about/',
       jobTitle: 'Founder, Designer, and Developer',
       worksFor: {
-        '@id': 'https://brightersites.app/#organization',
+        '@id': 'https://brightersites.app/#business',
       },
       sameAs: [
         'https://www.linkedin.com/in/isaac-bright-9b8051433/',
@@ -81,9 +123,10 @@ const schema = {
       url: 'https://brightersites.app/',
       name: 'Brighter Sites',
       publisher: {
-        '@id': 'https://brightersites.app/#organization',
+        '@id': 'https://brightersites.app/#business',
       },
     },
+    ...additionalSchema,
   ],
 };
 
@@ -120,7 +163,7 @@ const analyticsConfig = JSON.stringify({
     <meta property="og:image" content={socialImageUrl} />
     <meta property="og:image:alt" content="Brighter Sites" />
 
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={socialImageUrl} />
